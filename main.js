@@ -1,11 +1,17 @@
 require('dotenv').config();
 
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
 const path = require('path');
+const fs   = require('fs');
+const os   = require('os');
 const { listDevices, startCapture } = require('./audio/capture');
 const { transcribe } = require('./ai/whisper');
-const { analyze } = require('./ai/claude');
-const { getResume, setResume } = require('./store/context');
+const { analyze }   = require('./ai/claude');
+const {
+  getResume, setResume,
+  addToSession, getSession, clearSession,
+  getSettings, updateSettings
+} = require('./store/context');
 
 let win;
 let captureStream = null;
@@ -26,63 +32,70 @@ app.whenReady().then(() => {
   });
 
   win.loadFile(path.join(__dirname, 'ui', 'index.html'));
+
+  // Global hotkey: Ctrl+Shift+Space — toggle overlay visibility (stealth mode)
+  globalShortcut.register('CommandOrControl+Shift+Space', () => {
+    win.isVisible() ? win.hide() : win.show();
+  });
 });
+
+app.on('will-quit', () => globalShortcut.unregisterAll());
 
 app.on('window-all-closed', () => {
   if (captureStream) captureStream.quit();
   app.quit();
 });
 
-// List available audio input devices
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+async function runPipeline(text) {
+  const { minWords } = getSettings();
+  const words = text.trim().split(/\s+/).length;
+  if (!text.trim() || words < minWords) return;
+
+  win.webContents.send('new-result', { text, result: null });
+
+  try {
+    win.webContents.send('status', 'Analyzing: ' + text.slice(0, 40));
+    const result = await analyze(text, getResume());
+    addToSession({ text, result });
+    win.webContents.send('new-result', { text, result });
+    win.webContents.send('status', 'Listening...');
+  } catch (err) {
+    const detail = err.response?.data?.error?.message || err.message;
+    console.error('[claude error]', detail);
+    win.webContents.send('status', 'Claude error: ' + detail.slice(0, 60));
+  }
+}
+
+// ── IPC handlers ──────────────────────────────────────────────────────────────
+
 ipcMain.handle('get-devices', () => listDevices());
 
-// Save resume text for personalization
-ipcMain.handle('set-resume', (_, text) => {
-  setResume(text);
-});
+ipcMain.handle('set-resume', (_, text) => setResume(text));
 
 // Start audio capture → Whisper → Claude pipeline
 ipcMain.handle('start-capture', async (_, deviceId) => {
   if (captureStream) return;
 
+  const { chunkCount } = getSettings();
   win.webContents.send('status', 'Listening...');
 
-  captureStream = startCapture(deviceId, async (chunk) => {
+  captureStream = startCapture(deviceId, chunkCount, async (chunk) => {
     let text;
     try {
       win.webContents.send('status', 'Transcribing...');
       text = await transcribe(chunk);
     } catch (err) {
       const detail = err.response?.data?.error?.message || err.message;
-      console.error('[whisper 401?]', detail);
-      win.webContents.send('status', 'Whisper error: ' + detail);
+      console.error('[whisper error]', detail);
+      win.webContents.send('status', 'Whisper error: ' + detail.slice(0, 60));
       return;
     }
-
-    // Skip empty or very short transcripts (noise, single words, music fragments)
-    const words = text.trim().split(/\s+/).length;
-    if (!text.trim() || words < 4) {
-      win.webContents.send('status', 'Listening...');
-      return;
-    }
-
-    // Show transcript immediately, even if Claude fails
-    win.webContents.send('new-result', { text, result: null });
-
-    try {
-      win.webContents.send('status', 'Analyzing: ' + text.slice(0, 40));
-      const result = await analyze(text, getResume());
-      win.webContents.send('new-result', { text, result });
-      win.webContents.send('status', 'Listening...');
-    } catch (err) {
-      const detail = err.response?.data?.error?.message || err.message;
-      console.error('[claude error]', detail);
-      win.webContents.send('status', 'Claude error: ' + detail.slice(0, 60));
-    }
+    await runPipeline(text);
   });
 });
 
-// Stop audio capture
 ipcMain.handle('stop-capture', () => {
   if (captureStream) {
     captureStream.quit();
@@ -90,3 +103,25 @@ ipcMain.handle('stop-capture', () => {
     win.webContents.send('status', 'Stopped.');
   }
 });
+
+// Manual question input (mock interview mode — skips Whisper)
+ipcMain.handle('ask-manual', async (_, text) => {
+  if (!text || !text.trim()) return;
+  await runPipeline(text.trim());
+});
+
+// Save session to Desktop as JSON
+ipcMain.handle('save-session', () => {
+  const session = getSession();
+  if (!session.length) return { ok: false, msg: 'No session data yet.' };
+
+  const date   = new Date().toISOString().slice(0, 19).replace(/[T:]/g, '-');
+  const file   = path.join(os.homedir(), 'Desktop', `gamedev-session-${date}.json`);
+  const data   = JSON.stringify(session, null, 2);
+  fs.writeFileSync(file, data, 'utf-8');
+  return { ok: true, file };
+});
+
+// Settings
+ipcMain.handle('get-settings',    ()        => getSettings());
+ipcMain.handle('update-settings', (_, patch) => updateSettings(patch));

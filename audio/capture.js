@@ -16,7 +16,7 @@ function listDevices() {
  * @param {function(Buffer): void} onChunk - Called with each 3-second PCM buffer
  * @returns {object} naudiodon AudioIO instance — call .quit() to stop
  */
-function startCapture(deviceId, onChunk) {
+function startCapture(deviceId, chunkCount = 10, onChunk) {
   const ai = new naudiodon.AudioIO({
     inOptions: {
       channelCount: 2,
@@ -31,7 +31,7 @@ function startCapture(deviceId, onChunk) {
 
   ai.on('data', (chunk) => {
     buffer.push(chunk);
-    if (buffer.length >= 10) {
+    if (buffer.length >= chunkCount) {
       onChunk(Buffer.concat(buffer));
       buffer = [];
     }
