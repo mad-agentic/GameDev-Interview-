@@ -1,0 +1,440 @@
+PID 33404 received SIGSEGV for address: 0x50fd5369
+SymInit: Symbol-SearchPath: '.;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\electron\dist;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'admin'
+OS-Version: 10.0.19045 () 0x100-0x1
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\StackWalker.cpp (941): StackWalker::ShowCallstack
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFD53489B4C (ntdll): (filename not available): RtlDeleteAce
+00007FFD53462376 (ntdll): (filename not available): RtlRaiseException
+00007FFD534622A7 (ntdll): (filename not available): RtlRaiseException
+00007FFD50FD5369 (KERNELBASE): (filename not available): RaiseException
+00007FFD52DAA780 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA744 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA71C (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52DAA6F8 (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52D5285F (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52E2B55D (RPCRT4): (filename not available): Ndr64AsyncServerCallAll
+00007FFD52D52420 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52D52338 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD500F28A4 (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F26CD (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F265D (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD52D7F153 (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52D7EFEA (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52DB527B (RPCRT4): (filename not available): RpcSsContextLockExclusive
+00007FFD52DB8540 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB8359 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB81A8 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB9316 (RPCRT4): (filename not available): RpcAsyncCancelCall
+00007FFD500F1CFC (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B67 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B06 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1F1E (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD500F1E41 (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD4D8A22E3 (WTSAPI32): (filename not available): WTSUnRegisterSessionNotification
+00007FF616C2AD1C (electron): (filename not available): uv_stream_set_blocking
+00007FF616C2AC7A (electron): (filename not available): uv_stream_set_blocking
+00007FF61584CE72 (electron): (filename not available): uv_os_getpid
+00007FF61584CC68 (electron): (filename not available): uv_os_getpid
+00007FF614101371 (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FCF7A (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FD0ED (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF613E3E205 (electron): (filename not available): std::__Cr::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >
+00007FF6184F0D92 (electron): (filename not available): Cr_z_adler32
+00007FFD51D27374 (KERNEL32): (filename not available): BaseThreadInitThunk
+00007FFD5345CC91 (ntdll): (filename not available): RtlUserThreadStart
+PID 12152 received SIGSEGV for address: 0x50fd5369
+SymInit: Symbol-SearchPath: '.;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\electron\dist;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'admin'
+OS-Version: 10.0.19045 () 0x100-0x1
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\StackWalker.cpp (941): StackWalker::ShowCallstack
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFD53489B4C (ntdll): (filename not available): RtlDeleteAce
+00007FFD53462376 (ntdll): (filename not available): RtlRaiseException
+00007FFD534622A7 (ntdll): (filename not available): RtlRaiseException
+00007FFD50FD5369 (KERNELBASE): (filename not available): RaiseException
+00007FFD52DAA780 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA744 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA71C (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52DAA6F8 (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52D5285F (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52E2B55D (RPCRT4): (filename not available): Ndr64AsyncServerCallAll
+00007FFD52D52420 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52D52338 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD500F28A4 (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F26CD (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F265D (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD52D7F153 (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52D7EFEA (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52DB527B (RPCRT4): (filename not available): RpcSsContextLockExclusive
+00007FFD52DB8540 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB8359 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB81A8 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB9316 (RPCRT4): (filename not available): RpcAsyncCancelCall
+00007FFD500F1CFC (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B67 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B06 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1F1E (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD500F1E41 (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD4D8A22E3 (WTSAPI32): (filename not available): WTSUnRegisterSessionNotification
+00007FF616C2AD1C (electron): (filename not available): uv_stream_set_blocking
+00007FF616C2AC7A (electron): (filename not available): uv_stream_set_blocking
+00007FF61584CE72 (electron): (filename not available): uv_os_getpid
+00007FF61584CC68 (electron): (filename not available): uv_os_getpid
+00007FF614101371 (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FCF7A (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FD0ED (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF613E3E205 (electron): (filename not available): std::__Cr::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >
+00007FF6184F0D92 (electron): (filename not available): Cr_z_adler32
+00007FFD51D27374 (KERNEL32): (filename not available): BaseThreadInitThunk
+00007FFD5345CC91 (ntdll): (filename not available): RtlUserThreadStart
+PID 34156 received SIGSEGV for address: 0x50fd5369
+SymInit: Symbol-SearchPath: '.;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\electron\dist;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'admin'
+OS-Version: 10.0.19045 () 0x100-0x1
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\StackWalker.cpp (941): StackWalker::ShowCallstack
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFD53489B4C (ntdll): (filename not available): RtlDeleteAce
+00007FFD53462376 (ntdll): (filename not available): RtlRaiseException
+00007FFD534622A7 (ntdll): (filename not available): RtlRaiseException
+00007FFD50FD5369 (KERNELBASE): (filename not available): RaiseException
+00007FFD52DAA780 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA744 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA71C (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52DAA6F8 (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52D5285F (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52E2B55D (RPCRT4): (filename not available): Ndr64AsyncServerCallAll
+00007FFD52D52420 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52D52338 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD500F28A4 (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F26CD (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F265D (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD52D7F153 (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52D7EFEA (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52DB527B (RPCRT4): (filename not available): RpcSsContextLockExclusive
+00007FFD52DB8540 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB8359 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB81A8 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB9316 (RPCRT4): (filename not available): RpcAsyncCancelCall
+00007FFD500F1CFC (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B67 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B06 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1F1E (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD500F1E41 (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD4D8A22E3 (WTSAPI32): (filename not available): WTSUnRegisterSessionNotification
+00007FF616C2AD1C (electron): (filename not available): uv_stream_set_blocking
+00007FF616C2AC7A (electron): (filename not available): uv_stream_set_blocking
+00007FF61584CE72 (electron): (filename not available): uv_os_getpid
+00007FF61584CC68 (electron): (filename not available): uv_os_getpid
+00007FF614101371 (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FCF7A (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FD0ED (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF613E3E205 (electron): (filename not available): std::__Cr::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >
+00007FF6184F0D92 (electron): (filename not available): Cr_z_adler32
+00007FFD51D27374 (KERNEL32): (filename not available): BaseThreadInitThunk
+00007FFD5345CC91 (ntdll): (filename not available): RtlUserThreadStart
+PID 32936 received SIGSEGV for address: 0x50fd5369
+SymInit: Symbol-SearchPath: '.;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\electron\dist;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'admin'
+OS-Version: 10.0.19045 () 0x100-0x1
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\StackWalker.cpp (941): StackWalker::ShowCallstack
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFD53489B4C (ntdll): (filename not available): RtlDeleteAce
+00007FFD53462376 (ntdll): (filename not available): RtlRaiseException
+00007FFD534622A7 (ntdll): (filename not available): RtlRaiseException
+00007FFD50FD5369 (KERNELBASE): (filename not available): RaiseException
+00007FFD52DAA780 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA744 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA71C (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52DAA6F8 (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52D5285F (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52E2B55D (RPCRT4): (filename not available): Ndr64AsyncServerCallAll
+00007FFD52D52420 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52D52338 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD500F28A4 (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F26CD (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F265D (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD52D7F153 (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52D7EFEA (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52DB527B (RPCRT4): (filename not available): RpcSsContextLockExclusive
+00007FFD52DB8540 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB8359 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB81A8 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB9316 (RPCRT4): (filename not available): RpcAsyncCancelCall
+00007FFD500F1CFC (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B67 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B06 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1F1E (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD500F1E41 (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD4D8A22E3 (WTSAPI32): (filename not available): WTSUnRegisterSessionNotification
+00007FF616C2AD1C (electron): (filename not available): uv_stream_set_blocking
+00007FF616C2AC7A (electron): (filename not available): uv_stream_set_blocking
+00007FF61584CE72 (electron): (filename not available): uv_os_getpid
+00007FF61584CC68 (electron): (filename not available): uv_os_getpid
+00007FF614101371 (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FCF7A (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FD0ED (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF613E3E205 (electron): (filename not available): std::__Cr::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >
+00007FF6184F0D92 (electron): (filename not available): Cr_z_adler32
+00007FFD51D27374 (KERNEL32): (filename not available): BaseThreadInitThunk
+00007FFD5345CC91 (ntdll): (filename not available): RtlUserThreadStart
+PID 7336 received SIGSEGV for address: 0x50fd5369
+SymInit: Symbol-SearchPath: '.;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\electron\dist;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'admin'
+OS-Version: 10.0.19045 () 0x100-0x1
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\StackWalker.cpp (941): StackWalker::ShowCallstack
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFD53489B4C (ntdll): (filename not available): RtlDeleteAce
+00007FFD53462376 (ntdll): (filename not available): RtlRaiseException
+00007FFD534622A7 (ntdll): (filename not available): RtlRaiseException
+00007FFD50FD5369 (KERNELBASE): (filename not available): RaiseException
+00007FFD52DAA780 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA744 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA71C (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52DAA6F8 (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52D5285F (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52E2B55D (RPCRT4): (filename not available): Ndr64AsyncServerCallAll
+00007FFD52D52420 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52D52338 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD500F28A4 (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F26CD (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F265D (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD52D7F153 (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52D7EFEA (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52DB527B (RPCRT4): (filename not available): RpcSsContextLockExclusive
+00007FFD52DB8540 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB8359 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB81A8 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB9316 (RPCRT4): (filename not available): RpcAsyncCancelCall
+00007FFD500F1CFC (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B67 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B06 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1F1E (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD500F1E41 (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD4D8A22E3 (WTSAPI32): (filename not available): WTSUnRegisterSessionNotification
+00007FF616C2AD1C (electron): (filename not available): uv_stream_set_blocking
+00007FF616C2AC7A (electron): (filename not available): uv_stream_set_blocking
+00007FF61584CE72 (electron): (filename not available): uv_os_getpid
+00007FF61584CC68 (electron): (filename not available): uv_os_getpid
+00007FF614101371 (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FCF7A (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FD0ED (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF613E3E205 (electron): (filename not available): std::__Cr::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >
+00007FF6184F0D92 (electron): (filename not available): Cr_z_adler32
+00007FFD51D27374 (KERNEL32): (filename not available): BaseThreadInitThunk
+00007FFD5345CC91 (ntdll): (filename not available): RtlUserThreadStart
+PID 24600 received SIGSEGV for address: 0x50fd5369
+SymInit: Symbol-SearchPath: '.;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\electron\dist;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'admin'
+OS-Version: 10.0.19045 () 0x100-0x1
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\StackWalker.cpp (941): StackWalker::ShowCallstack
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFD53489B4C (ntdll): (filename not available): RtlDeleteAce
+00007FFD53462376 (ntdll): (filename not available): RtlRaiseException
+00007FFD534622A7 (ntdll): (filename not available): RtlRaiseException
+00007FFD50FD5369 (KERNELBASE): (filename not available): RaiseException
+00007FFD52DAA780 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA744 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA71C (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52DAA6F8 (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52D5285F (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52E2B55D (RPCRT4): (filename not available): Ndr64AsyncServerCallAll
+00007FFD52D52420 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52D52338 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD500F28A4 (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F26CD (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F265D (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD52D7F153 (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52D7EFEA (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52DB527B (RPCRT4): (filename not available): RpcSsContextLockExclusive
+00007FFD52DB8540 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB8359 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB81A8 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB9316 (RPCRT4): (filename not available): RpcAsyncCancelCall
+00007FFD500F1CFC (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B67 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B06 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1F1E (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD500F1E41 (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD4D8A22E3 (WTSAPI32): (filename not available): WTSUnRegisterSessionNotification
+00007FF616C2AD1C (electron): (filename not available): uv_stream_set_blocking
+00007FF616C2AC7A (electron): (filename not available): uv_stream_set_blocking
+00007FF61584CE72 (electron): (filename not available): uv_os_getpid
+00007FF61584CC68 (electron): (filename not available): uv_os_getpid
+00007FF614101371 (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FCF7A (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FD0ED (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF613E3E205 (electron): (filename not available): std::__Cr::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >
+00007FF6184F0D92 (electron): (filename not available): Cr_z_adler32
+00007FFD51D27374 (KERNEL32): (filename not available): BaseThreadInitThunk
+00007FFD5345CC91 (ntdll): (filename not available): RtlUserThreadStart
+PID 20980 received SIGSEGV for address: 0x50fd5369
+SymInit: Symbol-SearchPath: '.;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\electron\dist;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'admin'
+OS-Version: 10.0.19045 () 0x100-0x1
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\StackWalker.cpp (941): StackWalker::ShowCallstack
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFD53489B4C (ntdll): (filename not available): RtlDeleteAce
+00007FFD53462376 (ntdll): (filename not available): RtlRaiseException
+00007FFD534622A7 (ntdll): (filename not available): RtlRaiseException
+00007FFD50FD5369 (KERNELBASE): (filename not available): RaiseException
+00007FFD52DAA780 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA744 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA71C (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52DAA6F8 (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52D5285F (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52E2B55D (RPCRT4): (filename not available): Ndr64AsyncServerCallAll
+00007FFD52D52420 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52D52338 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD500F28A4 (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F26CD (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F265D (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD52D7F153 (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52D7EFEA (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52DB527B (RPCRT4): (filename not available): RpcSsContextLockExclusive
+00007FFD52DB8540 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB8359 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB81A8 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB9316 (RPCRT4): (filename not available): RpcAsyncCancelCall
+00007FFD500F1CFC (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B67 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B06 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1F1E (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD500F1E41 (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD4D8A22E3 (WTSAPI32): (filename not available): WTSUnRegisterSessionNotification
+00007FF616C2AD1C (electron): (filename not available): uv_stream_set_blocking
+00007FF616C2AC7A (electron): (filename not available): uv_stream_set_blocking
+00007FF61584CE72 (electron): (filename not available): uv_os_getpid
+00007FF61584CC68 (electron): (filename not available): uv_os_getpid
+00007FF614101371 (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FCF7A (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FD0ED (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF613E3E205 (electron): (filename not available): std::__Cr::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >
+00007FF6184F0D92 (electron): (filename not available): Cr_z_adler32
+00007FFD51D27374 (KERNEL32): (filename not available): BaseThreadInitThunk
+00007FFD5345CC91 (ntdll): (filename not available): RtlUserThreadStart
+PID 4788 received SIGSEGV for address: 0x50fd5369
+SymInit: Symbol-SearchPath: '.;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\electron\dist;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'admin'
+OS-Version: 10.0.19045 () 0x100-0x1
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\StackWalker.cpp (941): StackWalker::ShowCallstack
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFD53489B4C (ntdll): (filename not available): RtlDeleteAce
+00007FFD53462376 (ntdll): (filename not available): RtlRaiseException
+00007FFD534622A7 (ntdll): (filename not available): RtlRaiseException
+00007FFD50FD5369 (KERNELBASE): (filename not available): RaiseException
+00007FFD52DAA780 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA744 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA71C (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52DAA6F8 (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52D5285F (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52E2B55D (RPCRT4): (filename not available): Ndr64AsyncServerCallAll
+00007FFD52D52420 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52D52338 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD500F28A4 (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F26CD (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F265D (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD52D7F153 (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52D7EFEA (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52DB527B (RPCRT4): (filename not available): RpcSsContextLockExclusive
+00007FFD52DB8540 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB8359 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB81A8 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB9316 (RPCRT4): (filename not available): RpcAsyncCancelCall
+00007FFD500F1CFC (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B67 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B06 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1F1E (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD500F1E41 (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD4D8A22E3 (WTSAPI32): (filename not available): WTSUnRegisterSessionNotification
+00007FF616C2AD1C (electron): (filename not available): uv_stream_set_blocking
+00007FF616C2AC7A (electron): (filename not available): uv_stream_set_blocking
+00007FF61584CE72 (electron): (filename not available): uv_os_getpid
+00007FF61584CC68 (electron): (filename not available): uv_os_getpid
+00007FF614101371 (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FCF7A (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FD0ED (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF613E3E205 (electron): (filename not available): std::__Cr::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >
+00007FF6184F0D92 (electron): (filename not available): Cr_z_adler32
+00007FFD51D27374 (KERNEL32): (filename not available): BaseThreadInitThunk
+00007FFD5345CC91 (ntdll): (filename not available): RtlUserThreadStart
+PID 4908 received SIGSEGV for address: 0x50fd5369
+SymInit: Symbol-SearchPath: '.;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\electron\dist;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'admin'
+OS-Version: 10.0.19045 () 0x100-0x1
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\StackWalker.cpp (941): StackWalker::ShowCallstack
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFD53489B4C (ntdll): (filename not available): RtlDeleteAce
+00007FFD53462376 (ntdll): (filename not available): RtlRaiseException
+00007FFD534622A7 (ntdll): (filename not available): RtlRaiseException
+00007FFD50FD5369 (KERNELBASE): (filename not available): RaiseException
+00007FFD52DAA780 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA744 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA71C (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52DAA6F8 (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52D5285F (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52E2B55D (RPCRT4): (filename not available): Ndr64AsyncServerCallAll
+00007FFD52D52420 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52D52338 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD500F28A4 (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F26CD (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F265D (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD52D7F153 (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52D7EFEA (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52DB527B (RPCRT4): (filename not available): RpcSsContextLockExclusive
+00007FFD52DB8540 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB8359 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB81A8 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB9316 (RPCRT4): (filename not available): RpcAsyncCancelCall
+00007FFD500F1CFC (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B67 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B06 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1F1E (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD500F1E41 (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD4D8A22E3 (WTSAPI32): (filename not available): WTSUnRegisterSessionNotification
+00007FF616C2AD1C (electron): (filename not available): uv_stream_set_blocking
+00007FF616C2AC7A (electron): (filename not available): uv_stream_set_blocking
+00007FF61584CE72 (electron): (filename not available): uv_os_getpid
+00007FF61584CC68 (electron): (filename not available): uv_os_getpid
+00007FF614101371 (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FCF7A (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FD0ED (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF613E3E205 (electron): (filename not available): std::__Cr::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >
+00007FF6184F0D92 (electron): (filename not available): Cr_z_adler32
+00007FFD51D27374 (KERNEL32): (filename not available): BaseThreadInitThunk
+00007FFD5345CC91 (ntdll): (filename not available): RtlUserThreadStart
+PID 26268 received SIGSEGV for address: 0x50fd5369
+SymInit: Symbol-SearchPath: '.;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview;C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\electron\dist;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'admin'
+OS-Version: 10.0.19045 () 0x100-0x1
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\StackWalker.cpp (941): StackWalker::ShowCallstack
+C:\Users\admin\Desktop\_MyProjects\GameDev-Interview\node_modules\segfault-handler\src\segfault-handler.cpp (242): segfault_handler
+00007FFD53489B4C (ntdll): (filename not available): RtlDeleteAce
+00007FFD53462376 (ntdll): (filename not available): RtlRaiseException
+00007FFD534622A7 (ntdll): (filename not available): RtlRaiseException
+00007FFD50FD5369 (KERNELBASE): (filename not available): RaiseException
+00007FFD52DAA780 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA744 (RPCRT4): (filename not available): RpcRaiseException
+00007FFD52DAA71C (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52DAA6F8 (RPCRT4): (filename not available): I_RpcSendReceive
+00007FFD52D5285F (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52E2B55D (RPCRT4): (filename not available): Ndr64AsyncServerCallAll
+00007FFD52D52420 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD52D52338 (RPCRT4): (filename not available): RpcAsyncCompleteCall
+00007FFD500F28A4 (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F26CD (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD500F265D (WINSTA): (filename not available): WinStationRegisterConsoleNotification
+00007FFD52D7F153 (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52D7EFEA (RPCRT4): (filename not available): RpcServerRegisterAuthInfoW
+00007FFD52DB527B (RPCRT4): (filename not available): RpcSsContextLockExclusive
+00007FFD52DB8540 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB8359 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB81A8 (RPCRT4): (filename not available): RpcBindingFromStringBindingA
+00007FFD52DB9316 (RPCRT4): (filename not available): RpcAsyncCancelCall
+00007FFD500F1CFC (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B67 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1B06 (WINSTA): (filename not available): WinStationRegisterCurrentSessionNotificationEvent
+00007FFD500F1F1E (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD500F1E41 (WINSTA): (filename not available): WinStationUnRegisterConsoleNotification
+00007FFD4D8A22E3 (WTSAPI32): (filename not available): WTSUnRegisterSessionNotification
+00007FF616C2AD1C (electron): (filename not available): uv_stream_set_blocking
+00007FF616C2AC7A (electron): (filename not available): uv_stream_set_blocking
+00007FF61584CE72 (electron): (filename not available): uv_os_getpid
+00007FF61584CC68 (electron): (filename not available): uv_os_getpid
+00007FF614101371 (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FCF7A (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF6140FD0ED (electron): (filename not available): v8::ScriptCompiler::ScriptStreamingTask::ScriptStreamingTask
+00007FF613E3E205 (electron): (filename not available): std::__Cr::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >::vector<v8::CpuProfileDeoptInfo,std::__Cr::allocator<v8::CpuProfileDeoptInfo> >
+00007FF6184F0D92 (electron): (filename not available): Cr_z_adler32
+00007FFD51D27374 (KERNEL32): (filename not available): BaseThreadInitThunk
+00007FFD5345CC91 (ntdll): (filename not available): RtlUserThreadStart

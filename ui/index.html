@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameDev Copilot</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="titlebar">
+    <span>🎮 GameDev Copilot</span>
+    <button id="close-btn" title="Close"></button>
+  </div>
+
+  <div id="controls">
+    <select id="device-select">
+      <option value="">Loading devices...</option>
+    </select>
+    <button id="start-btn">▶ Start</button>
+    <button id="stop-btn">■ Stop</button>
+  </div>
+
+  <div id="status-bar">Ready</div>
+
+  <div id="results">
+    <div style="color:#4a5568; font-size:12px; text-align:center; margin-top:20px;">
+      Select a device and press Start.<br/>
+      Speak — suggestions appear here.
+    </div>
+  </div>
+
+  <button id="resume-toggle">▾ Resume / Background</button>
+  <div id="resume-panel">
+    <textarea id="resume-text" placeholder="Paste your resume or background info here for personalized answers..."></textarea>
+    <button id="resume-save">Save</button>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

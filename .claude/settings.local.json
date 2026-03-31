@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(node -e \"const {listDevices}=require\\(''./audio/capture''\\); console.log\\(JSON.stringify\\(listDevices\\(\\), null, 2\\)\\)\")",
+      "Bash(node -e \"const naudiodon=require\\(''naudiodon''\\); console.log\\(JSON.stringify\\(naudiodon.getDevices\\(\\), null, 2\\)\\)\")",
+      "Bash(node -e \":*)",
+      "Bash(npx @electron/rebuild -f -w naudiodon)",
+      "Bash(taskkill /F /IM electron.exe)",
+      "Bash(taskkill /F /IM Electron.exe)",
+      "Bash(node -e \"require\\(''dotenv''\\).config\\(\\); console.log\\(''ROUTER_KEY:'', process.env.ROUTER_KEY ? process.env.ROUTER_KEY.slice\\(0,15\\)+''...'' : ''UNDEFINED''\\);\")",
+      "Bash(node -e \"require\\(''dotenv''\\).config\\(\\); console.log\\(''ROUTER_KEY prefix:'', \\(process.env.ROUTER_KEY||''''\\).slice\\(0,10\\)\\);\")"
+    ]
+  }
+}
