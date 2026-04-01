@@ -1,0 +1,620 @@
+{
+  "_meta": {
+    "generated": "2026-04-01",
+    "source": "hoatv2211.github.io",
+    "purpose": "Comprehensive portfolio profile — who is HoaTV (MAD)?",
+    "version": "1.0.0"
+  },
+
+  "identity": {
+    "fullName": "Trần Văn Hòa",
+    "displayName": "HoaTV",
+    "alias": "MAD",
+    "title": "Senior Game Developer",
+    "headline": "7+ years building high-quality 2D/3D games, GameFi/Web3 titles, and AI-powered tools",
+    "nationality": "Vietnamese",
+    "location": {
+      "city": "Ha Noi",
+      "country": "Vietnam",
+      "timezone": "UTC+7"
+    },
+    "birthday": "1994-11-22",
+    "avatar": "assets/avt.jpg",
+    "portfolioUrl": "https://hoatv2211.github.io"
+  },
+
+  "contact": {
+    "email": "hoatv.mad@gmail.com",
+    "phone": "+84 374 639 758",
+    "formspree": "https://formspree.io/f/xkgqjkpy"
+  },
+
+  "social": {
+    "github": "https://github.com/hoatv2211",
+    "githubOrg": "https://github.com/mad-agentic",
+    "linkedin": "https://www.linkedin.com/in/hoatv",
+    "facebook": "https://www.facebook.com/GG.GameOver",
+    "telegram": "https://t.me/o0_MaD_0o",
+    "googlePlay": "https://play.google.com/store/apps/dev?id=4917555335442358774",
+    "itchIo": "https://o0-mad-0o.itch.io/"
+  },
+
+  "about": {
+    "summary": "A highly experienced Senior Unity Developer with 7+ years in the game industry, specializing in building high-quality 2D/3D games for mobile and web platforms. Expertise spans idle, defense, strategy, and GameFi games with deep integration of blockchain technologies (NFT, Web3) and monetization systems.",
+    "pitch": "I take pride in delivering cross-platform Unity experiences with custom game mechanics, clean UI/UX, optimized performance, and scalable design systems — all crafted with precision and creativity. I've led and solo-developed projects from concept to release, and continuously improve through prototyping, reskinning, and long-term support.",
+    "techStack": ["Unity", "C#", "C++", "Firebase", "WebGL", "AdMob", "Game Optimization", "Game Design", "Web3/NFT", "N8N", "Telegram App/Bot Automation"],
+    "whyMe": [
+      "Passionate & Reliable — From concept to release",
+      "Fast & Professional — Delivery with high quality",
+      "Creative Problem Solver — Focused on gameplay and performance",
+      "Long-Term Support — Helping you scale your product"
+    ]
+  },
+
+  "careerHighlights": [
+    "50+ published games on App Store, Google Play, and WebGL",
+    "Full-cycle developer: concept → gameplay core → UI/UX → performance optimization → publishing & live ops",
+    "Blockchain/GameFi Integration: hands-on experience with NFT marketplace, staking, wallets (MetaMask, TON, World App), and Play-to-Earn economy",
+    "Team Leadership: managed and mentored 5–15 devs/artists/designers, applying Agile/Scrum and CI/CD pipelines",
+    "Cross-platform: Unity WebGL, iOS, Android, Telegram Mini App, World App, with self-deployed backend (Docker, Firebase, AWS, Supabase)"
+  ],
+
+  "services": [
+    {
+      "title": "Unity Game Development",
+      "description": "Build high-quality 2D/3D mobile games, from core mechanics to monetization and publishing."
+    },
+    {
+      "title": "Application Development",
+      "description": "Create mobile and desktop apps tailored to business needs and user experiences."
+    },
+    {
+      "title": "Game Blockchain Integration",
+      "description": "Integrate NFTs, wallets, and GameFi features seamlessly into Unity games."
+    },
+    {
+      "title": "n8n Automation & AI Workflows",
+      "description": "Automate workflows, AI agents, and cross-platform integrations with n8n."
+    },
+    {
+      "title": "Telegram Game & Bot",
+      "description": "Build interactive Telegram games, AI bots, and mini-apps for global audiences."
+    },
+    {
+      "title": "Ads & Monetization",
+      "description": "Boost revenue with ad networks, in-app purchases, plugin systems, and reskin workflows."
+    },
+    "High-Quality Game Design & Custom Mechanics",
+    "Mobile & Cross-Platform Unity Development",
+    "Web3 Blockchain & NFT Integration",
+    "UI/UX, Animation, and Wireframing",
+    "Monetization: Ads, IAP, and ASO",
+    "App Store & Play Store Publishing",
+    "Game Optimization & Performance Tuning",
+    "Google Ads, SDK Integration, and Analytics",
+    "Reskin, Rapid Prototyping, and Maintenance"
+  ],
+
+  "skills": {
+    "mainSkills": {
+      "languages": ["C#", "Lua", "Modern C/C++"],
+      "engines": ["Unity", "Unreal", "Cocos"],
+      "principles": ["OOP", "SOLID", "TDD"]
+    },
+    "fullSkillset": {
+      "languages": ["Modern C/C++", "C#", "Lua", "HTML5", "TypeScript", "JavaScript", "PHP"],
+      "tools": ["Git", "Github Project", "AI Agent", "Notion", "Blender", "Jira", "Photoshop"],
+      "principles": ["OOP", "Design Patterns", "SOLID", "TDD", "DRY", "KISS", "YAGNI"],
+      "softSkills": ["Agile", "Communication", "Teamwork", "Self-planning", "RnD", "Critical Thinking", "Problem Solving"],
+      "ide": ["Rider", "Visual Studio Code", "Visual Studio"],
+      "devops": ["Github Action", "Docker"],
+      "engines": ["Unity", "Unreal", "Cocos"],
+      "backend": ["Firebase", "Supabase", "AWS", "Docker"],
+      "blockchain": ["MetaMask", "TON Wallet", "World App", "NFT Marketplace", "Smart Contracts (integration)"],
+      "automation": ["N8N", "Telegram Bot API", "CI/CD Pipelines"]
+    }
+  },
+
+  "education": [
+    {
+      "institution": "University of Transport and Communications",
+      "degree": "Bachelor's Degree in Information Technology",
+      "period": "October 2013 — May 2017"
+    },
+    {
+      "institution": "ITPlus Academy",
+      "degree": "Advanced Game Development & Unity Certification",
+      "period": "October 2016 — May 2017"
+    }
+  ],
+
+  "experience": [
+    {
+      "company": "Freelancer / Remote Team Developer",
+      "position": "Lead Developer / Freelancer",
+      "period": "Jan 2025 — Present",
+      "description": "Working as an independent freelancer and remote team lead, focusing on building scalable game development pipelines, mentoring remote developers, and delivering Unity projects for global clients.",
+      "highlights": [
+        "Leading and mentoring distributed teams (5–10 members) across multiple time zones",
+        "Delivering Unity projects for clients worldwide (casual, mid-core, GameFi, and Web3 games)",
+        "Remote-first approach: Agile management, CI/CD automation, and transparent collaboration",
+        "Combining technical expertise and leadership to scale both indie and outsourced game projects"
+      ]
+    },
+    {
+      "company": "Gamota - Gabros Team",
+      "position": "Senior Unity Developer",
+      "period": "July 2023 — June 2024",
+      "description": "Developed and maintained casual games such as Sandwich, DOP, DIY, and Puzzle games.",
+      "highlights": [
+        "Developed and maintained casual games (Sandwich, DOP, DIY, Puzzle)",
+        "Deployed, monitored, and supported customers",
+        "Designed systems and databases",
+        "Researched new technologies",
+        "Trained team members"
+      ]
+    },
+    {
+      "company": "Neko Global",
+      "position": "Project Manager / Senior Unity Developer",
+      "period": "July 2022 — May 2023",
+      "description": "Developed and maintained a turn-based GameFi project (Nekoverse). Led team and managed tasks.",
+      "highlights": [
+        "Developed and maintained a turn-based GameFi project",
+        "Deployed, monitored, and supported customers",
+        "Managed and assigned tasks, supporting team members",
+        "Designed systems and databases",
+        "Researched new technologies",
+        "Trained team members"
+      ]
+    },
+    {
+      "company": "BLAMEO Technology",
+      "position": "Project Manager / Technical Leader",
+      "period": "June 2021 — May 2022",
+      "description": "Developed and maintained an RTS strategy game combined with GameFi (Idle Cyber NFT).",
+      "highlights": [
+        "Developed and maintained an RTS strategy game combined with GameFi",
+        "Deployed, monitored, and supported customers",
+        "Managed and assigned tasks, supporting team members",
+        "Designed systems and databases",
+        "Researched new technologies",
+        "Trained team members"
+      ]
+    },
+    {
+      "company": "BEEMOB Studio",
+      "position": "Unity Developer",
+      "period": "March 2021 — June 2021",
+      "highlights": [
+        "Developed, maintained, and fixed bugs",
+        "Deployed, monitored, and supported customers",
+        "Designed systems and databases",
+        "Researched new technologies"
+      ]
+    },
+    {
+      "company": "Techies Studio",
+      "position": "Technical Leader",
+      "period": "November 2019 — June 2020",
+      "highlights": [
+        "Developed, maintained, and fixed bugs",
+        "Deployed, monitored, and supported customers",
+        "Managed and assigned tasks, supporting team members",
+        "Designed systems and databases",
+        "Trained team members"
+      ]
+    },
+    {
+      "company": "2NF Office Solutions",
+      "position": "Unity Developer",
+      "period": "March 2019 — August 2019",
+      "highlights": [
+        "Developed, maintained, and fixed bugs",
+        "Deployed, monitored, and supported customers",
+        "Designed systems and databases",
+        "Researched new technologies"
+      ]
+    },
+    {
+      "company": "CSCMobi Studio",
+      "position": "Unity Developer",
+      "period": "November 2017 — June 2018",
+      "highlights": [
+        "Developed, maintained, and fixed bugs",
+        "Deployed, monitored, and supported customers",
+        "Designed systems and databases",
+        "Researched new technologies"
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "id": "heroic-defense",
+      "title": "Heroic Defense",
+      "category": "Unity",
+      "genre": "Tower Defense / Strategy",
+      "platform": ["Android", "iOS"],
+      "period": "Sep 2024 — Jan 2025",
+      "engine": "Unity",
+      "teamSize": 4,
+      "role": "Core Game Developer / Lead Dev",
+      "description": "A mobile tower defense game with diverse enemies, special weapon mechanics, and gacha systems.",
+      "myContributions": [
+        "Implemented unique enemy behaviors and new enemy types across multiple maps",
+        "Designed and optimized special weapon mechanics (saw, rocket, machine gun, flamethrower)",
+        "Developed robust reward systems with material drops and currency management",
+        "Created passive and active skill systems for dynamic gameplay",
+        "Enhanced combat with refined damage calculation and energy regeneration",
+        "Integrated SDK, ads, and in-app purchases (IAP)",
+        "Took full responsibility for core game development"
+      ],
+      "achievements": [
+        "10K – 50K downloads on launch",
+        "200K+ total downloads after one month of release",
+        "Agile/Scrum methodology followed throughout"
+      ],
+      "links": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hd.heroic.defense",
+        "appStore": "https://apps.apple.com/app/heroic-defense/id6742034673",
+        "sensorTowerAndroid": "https://app.sensortower.com/overview/com.hd.heroic.defense",
+        "sensorTowerIos": "https://app.sensortower.com/overview/6742034673"
+      }
+    },
+    {
+      "id": "dalgona-worldchain",
+      "title": "Dalgona - Worldchain",
+      "category": "Unity",
+      "genre": "Mini-game / Casual",
+      "platform": ["World App (Web3 Mini App)"],
+      "period": "Jun 2025 — Aug 2025",
+      "engine": "Unity + WebGL",
+      "teamSize": 1,
+      "role": "Solo Developer",
+      "description": "A fun and addictive mini-game integrated on World App. Inspired by the famous 'sugar candy challenge' (Dalgona), bringing a nostalgic yet thrilling experience to a global audience.",
+      "myContributions": [
+        "Solo-developed the entire mini-game including core mechanics, difficulty progression, and win/lose logic",
+        "Designed and implemented UI/UX with playful animations",
+        "Optimized performance for Web3 Mini App integration within World App",
+        "Integrated leaderboard and ranking system",
+        "Published and maintained the game with continuous updates"
+      ],
+      "achievements": [
+        "🏆 Reached Top 1 on the World App game ranking during launch period",
+        "Engaged hundreds of thousands of users within the Worldcoin ecosystem"
+      ],
+      "links": {
+        "worldApp": "https://world.org/ecosystem/app_87ae73f8d0558b142fb9c5fc7811b8af"
+      }
+    },
+    {
+      "id": "mu-loren-mobile",
+      "title": "MU: Loren Mobile",
+      "category": "Unity",
+      "genre": "MMORPG",
+      "platform": ["Android", "iOS"],
+      "period": "2024 — 2025",
+      "engine": "Unity",
+      "role": "Senior Unity Developer",
+      "description": "Mobile MMORPG inspired by the legendary MU Online, bringing classic character classes and intense PvE/PvP content with stunning 3D graphics optimized for mobile.",
+      "myContributions": [
+        "Worked as Senior Unity Developer in a collaborative team",
+        "Developed and maintained quest system, class mechanics, and monster spawning logic",
+        "Handled performance profiling and optimization for smooth mobile gameplay",
+        "Integrated UI/UX elements and implemented in-game events and battle systems"
+      ],
+      "keyFeatures": [
+        "5 iconic character classes: Dark Wizard, Dark Knight, Fairy Elf, Magic Gladiator, Dark Lord",
+        "Extensive quest system: daily, weekly, party, guild missions",
+        "Classic MU features: stat allocation, Loren Market free trade, Chaos System gear crafting",
+        "Signature events: Blood Castle, Devil Square, Chaos Castle, Arena"
+      ],
+      "links": {
+        "website": "https://lucdia.adnxgames.vn/trang-chu",
+        "appStore": "https://lucdia.adnxgames.vn/ios",
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.mobi.ldlorencia",
+        "youtubeTrailer": "https://www.youtube.com/embed/UTqN9xl2pBM"
+      }
+    },
+    {
+      "id": "proxyapi-mad",
+      "title": "ProxyAPI.MAD",
+      "category": "Agentic AI",
+      "genre": "Developer Tool / AI Infrastructure",
+      "platform": ["Web"],
+      "period": "2024 — Present",
+      "role": "Founder / Solo Developer",
+      "description": "Part of the mad-agentic ecosystem. An AI proxy infrastructure that enables flexible API proxy solutions, supporting advanced AI automation systems and multi-provider integration.",
+      "keyFeatures": [
+        "🤖 Agentic AI Integration: Intelligent automation flows and pipelines via AI Agents",
+        "⚡ Seamless Proxying: Granular control over incoming/outgoing AI API requests and responses",
+        "🛠️ Flexible Architecture: Easily extendable and ready for new Agents",
+        "Dashboard, API Keys management, Providers panel, Chat Interface, Logs, Settings"
+      ],
+      "links": {
+        "github": "https://github.com/mad-agentic/ProxyAPI.MAD",
+        "githubOrg": "https://github.com/mad-agentic",
+        "website": "https://mad-agentic.github.io/ProxyAPI.MAD"
+      }
+    },
+    {
+      "id": "nekoverse",
+      "title": "Nekoverse (NFT) — GameFi",
+      "category": "Unity",
+      "genre": "Play-to-Earn MMORPG / GameFi",
+      "platform": ["Mobile", "Web3"],
+      "period": "2022 — 2023",
+      "engine": "Unity",
+      "role": "Senior Unity Developer",
+      "description": "Play-to-Earn MMORPG built on blockchain technology, offering players a decentralized in-game economy and a Guild system utilizing DAO governance. Players engage in PvE/PvP battles, explore the world, farm resources, and craft items.",
+      "keyFeatures": [
+        "Real-time Skill-based Battles: 1v1, 3v3, Tournaments, Boss Raids with elements/skills/equipment",
+        "Exploration & Resource Farming: discover hidden areas, harvest ores and wood, sell in marketplace",
+        "Comprehensive Crafting System: craft items that drive game progression",
+        "Neko Temple: stake in-game currencies to earn governance tokens and passive income"
+      ],
+      "myContributions": [
+        "Implemented core gameplay mechanics and optimized performance",
+        "Developed real-time battle systems including skill mechanics and elemental interactions",
+        "Integrated blockchain features (NFT assets, staking mechanisms) into Unity",
+        "Conducted performance profiling and optimization for various devices"
+      ],
+      "links": {
+        "website": "https://gam3s.gg/nekoverse/",
+        "youtubeTrailer": "https://www.youtube.com/embed/4FiWVHmdfig"
+      }
+    },
+    {
+      "id": "idle-cyber",
+      "title": "Idle Cyber (NFT)",
+      "category": "Unity",
+      "genre": "Idle Tower Defense / GameFi",
+      "platform": ["Android", "iOS", "WebGL"],
+      "period": "2021 — 2022",
+      "engine": "Unity",
+      "teamSize": 1,
+      "role": "Solo Developer / Founder",
+      "description": "Cyberpunk idle tower defense game set in a post-apocalyptic 2077 world. Players defend Earth from alien invaders by strategically deploying legendary heroes, upgrading powerful weapons, and customizing gear to survive endless enemy waves and boss battles.",
+      "myContributions": [
+        "Solo-developed full gameplay loop: stages, upgrades, rewards, ad integration",
+        "Implemented idle mechanics with strategic tower defense combat",
+        "Built a basic NFT marketplace with wallet and testnet blockchain integration",
+        "Handled UI/UX, animation integration, and performance optimization for mobile"
+      ],
+      "links": {
+        "webgl": "https://o0-mad-0o.itch.io/cyber-war",
+        "appStore": "https://apps.apple.com/us/app/cyber-war-idle-defense-heroes/id1563690159",
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.mad.idlecyberdefense"
+      }
+    },
+    {
+      "id": "sandwich-please",
+      "title": "Sandwich Please!",
+      "category": "Unity",
+      "genre": "Idle Simulation / Tycoon",
+      "platform": ["Android", "iOS"],
+      "period": "2023 — 2024",
+      "engine": "Unity",
+      "company": "Gamota - Gabros Team",
+      "role": "Senior Unity Developer",
+      "description": "Delightful idle simulation game where players manage a bustling sandwich shop. Starting with basic ingredients, players expand their menu, upgrade their shop, and serve a growing number of customers.",
+      "keyFeatures": [
+        "Idle Gameplay: Earn income even when offline",
+        "Menu Expansion: Unlock diverse sandwich ingredients",
+        "Shop Upgrades: Enhance shop equipment and decor",
+        "Customer Management: Serve customers with unique preferences"
+      ],
+      "myContributions": [
+        "Developed core gameplay mechanics including sandwich assembly and customer service systems",
+        "Implemented user interface elements and ensured smooth UX",
+        "Optimized game performance across various devices",
+        "Integrated analytics tools to monitor player engagement"
+      ],
+      "links": {
+        "appStore": "https://apps.apple.com/us/app/sandwich-please/id6475763350",
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.gb.sandwichidle.burgerplease.pizza.coffee",
+        "youtubeTrailer": "https://www.youtube.com/embed/LoYwMs8mFsc"
+      }
+    },
+    {
+      "id": "cryptoquest",
+      "title": "Crypto Quest",
+      "category": "Unity",
+      "genre": "Turn-based RPG / GameFi",
+      "platform": ["Web (WebGL)"],
+      "period": "May 2023 — Feb 2024",
+      "engine": "Unity",
+      "teamSize": 14,
+      "role": "Senior Unity Developer",
+      "description": "Turn-based RPG inspired by Dragon Quest, incorporating quests, abilities, characters, and networking features. Built with a team of 14 (9 frontend, 3 backend, 2 testers) using Agile Scrum.",
+      "myContributions": [
+        "Quest System: dynamic quest creation, completion, integration with backend quest logic",
+        "Audio System: Audio Manager for music, SFX, ambient sounds",
+        "Beast System: Beast Management module, API integration, UI for beast management",
+        "Game Mechanics: item usage, equipment management, skill integration, consumables, equipment rarity",
+        "UI/UX Enhancement: currency display, language settings, dialogue boxes, inventory, localization",
+        "Additional: Cheat Management, Cutscene Management, Tool Editor (Delete account, ScriptableObject Browser)",
+        "Live ops: content updates, bug fixes, performance optimizations"
+      ],
+      "links": {
+        "website": "https://crypto-quest.org/",
+        "demo": "https://games.indigames.link/crypto-quest/stg/"
+      }
+    },
+    {
+      "id": "surviver-io-template",
+      "title": "Survivor.IO (Template)",
+      "category": "Unity",
+      "genre": "Action Roguelite / Template",
+      "platform": ["Mobile"],
+      "engine": "Unity",
+      "role": "Developer",
+      "description": "A Survivor.IO-inspired template project showcasing roguelite gameplay mechanics, character progression, and enemy spawning systems for mobile."
+    },
+    {
+      "id": "heroic-defense-ice-breaking-battle",
+      "title": "Ice Breaking Battle",
+      "category": "Unity",
+      "genre": "Action / Casual",
+      "platform": ["Android"],
+      "engine": "Unity",
+      "role": "Developer",
+      "links": {
+        "sensorTower": "https://app.sensortower.com/overview/com.ibb.ice.breaking.battle"
+      }
+    },
+    {
+      "id": "metame-amusement-park",
+      "title": "Metame Amusement Park",
+      "category": "Unreal Engine",
+      "genre": "Virtual Experience / Metaverse",
+      "platform": ["PC / Web"],
+      "engine": "Unreal Engine",
+      "role": "Developer",
+      "description": "A metaverse-style amusement park experience built with Unreal Engine."
+    },
+    {
+      "id": "meow-flow",
+      "title": "Meow Flow",
+      "category": "Unity",
+      "genre": "Puzzle / Casual",
+      "platform": ["Mobile"],
+      "engine": "Unity",
+      "role": "Developer"
+    },
+    {
+      "id": "archero-clone",
+      "title": "Archero (Clone)",
+      "category": "Unity",
+      "genre": "Action Roguelite",
+      "platform": ["Mobile"],
+      "engine": "Unity",
+      "role": "Developer",
+      "description": "A feature-complete clone of Archero built in Unity as a learning/prototype project."
+    },
+    {
+      "id": "rise-of-trial-bike",
+      "title": "Rise of Trial Bike",
+      "category": "Unity",
+      "genre": "Racing / Physics",
+      "platform": ["Mobile"],
+      "engine": "Unity",
+      "role": "Developer"
+    },
+    {
+      "id": "home-design",
+      "title": "Home Design",
+      "category": "Unity",
+      "genre": "Casual / Design",
+      "platform": ["Mobile"],
+      "engine": "Unity",
+      "role": "Developer",
+      "links": {
+        "sensorTowerAndroid": "https://app.sensortower.com/api/android/apps/com.giraffegames.ggm3"
+      }
+    },
+    {
+      "id": "tile-candy",
+      "title": "Tile Candy!",
+      "category": "Unity",
+      "genre": "Puzzle / Match",
+      "platform": ["Mobile"],
+      "engine": "Unity",
+      "role": "Developer"
+    },
+    {
+      "id": "tiles-match3-mahjong",
+      "title": "Tiles Match 3: Mahjong",
+      "category": "Unity",
+      "genre": "Puzzle / Mahjong",
+      "platform": ["Mobile"],
+      "engine": "Unity",
+      "role": "Developer"
+    },
+    {
+      "id": "sudoku-universe",
+      "title": "Sudoku Universe - Modern",
+      "category": "Unity",
+      "genre": "Puzzle",
+      "platform": ["Mobile"],
+      "engine": "Unity",
+      "role": "Developer"
+    },
+    {
+      "id": "food-truck-shiba-inu",
+      "title": "Food Truck - Shiba Inu",
+      "category": "Unity",
+      "genre": "Casual / Simulation",
+      "platform": ["Mobile"],
+      "engine": "Unity",
+      "role": "Developer"
+    }
+  ],
+
+  "specializations": {
+    "gameDevelopment": {
+      "primaryEngine": "Unity",
+      "secondaryEngines": ["Unreal Engine", "Cocos"],
+      "genres": [
+        "Idle Games",
+        "Tower Defense",
+        "Strategy",
+        "MMORPG",
+        "Casual & Puzzle",
+        "Action Roguelite",
+        "GameFi / Play-to-Earn",
+        "Tycoon / Simulation",
+        "Racing / Physics",
+        "Mini-Games"
+      ],
+      "platforms": ["Android", "iOS", "WebGL", "Telegram Mini App", "World App (Web3)"]
+    },
+    "blockchain": {
+      "wallets": ["MetaMask", "TON Wallet", "World App"],
+      "concepts": ["NFT", "Play-to-Earn", "Staking", "DAO Governance", "On-chain Marketplace"],
+      "chains": ["Ethereum testnet (for NFT prototype)", "TON", "WorldID/Worldchain"]
+    },
+    "aiAndAutomation": {
+      "projects": ["ProxyAPI.MAD (multi-provider AI proxy)", "Agentic chat UI"],
+      "tools": ["N8N (workflow automation)", "Telegram Bot API", "AI Agents"],
+      "githubOrg": "https://github.com/mad-agentic"
+    },
+    "leadership": {
+      "maxTeamSize": 15,
+      "roles": ["Senior Unity Developer", "Technical Leader", "Project Manager"],
+      "methodologies": ["Agile", "Scrum", "CI/CD"],
+      "companies": ["Gamota", "Neko Global", "BLAMEO Technology", "Techies Studio"]
+    }
+  },
+
+  "personalityProfile": {
+    "workStyle": "Full-cycle developer who thrives from concept to making games. Combines deep technical skill with product-minded leadership.",
+    "strengths": [
+      "Solo-capable: can plan, design, build, and ship a complete product alone",
+      "Team multiplier: skilled at mentoring and orchestrating distributed teams",
+      "Cross-domain thinker: bridges game dev, blockchain, AI automation, and DevOps",
+      "Performance-obsessed: always optimizes for mobile and cross-platform stability",
+      "Entrepreneurial mindset: builds own tools (ProxyAPI.MAD, Agentic ecosystem)"
+    ],
+    "passions": [
+      "Building games that people love to play",
+      "Exploring AI and autonomous agent architectures",
+      "Open-source tooling for developers",
+      "Blockchain/Web3 gaming experiences"
+    ]
+  },
+
+  "statistics": {
+    "yearsOfExperience": "7+",
+    "publishedGames": "50+",
+    "companies": 8,
+    "maxTeamLed": 15,
+    "platforms": ["App Store", "Google Play", "WebGL", "Telegram Mini App", "World App"],
+    "notableMilestones": [
+      "200K+ downloads on Heroic Defense (one month post-launch)",
+      "Top 1 ranking on World App for Dalgona during launch",
+      "Founded mad-agentic GitHub organization for AI projects"
+    ]
+  }
+}

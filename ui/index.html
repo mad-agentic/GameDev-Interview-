@@ -13,7 +13,10 @@
     <div class="titlebar-actions">
       <button id="save-btn" title="Save session to Desktop">💾</button>
       <button id="settings-btn" title="Settings">⚙</button>
-      <button id="close-btn" title="Close"></button>
+      <button id="hide-btn"     title="Hide (Ctrl+Shift+Space)">👁</button>
+      <button id="minimize-btn" title="Thu nhỏ">–</button>
+      <button id="maximize-btn" title="Fullsize / Restore">⛶</button>
+      <button id="close-btn"    title="Close"></button>
     </div>
   </div>
 
@@ -21,17 +24,57 @@
     <select id="device-select">
       <option value="">Loading devices...</option>
     </select>
+    <button id="screen-source-btn" title="Choose screen or tab">🖥</button>
     <button id="start-btn">▶ Start</button>
+    <button id="pause-btn">⏸ Pause</button>
     <button id="stop-btn">■ Stop</button>
+    <button id="cc-btn" title="CC Mode — đọc text từ clipboard (otto.ai, Google Meet CC...)">📋 CC</button>
+    <button id="region-btn" title="Kéo chọn vùng CC trên màn hình — bấm lại để xóa">🎯</button>
+    <span   id="region-badge" title="Xóa vùng đã chọn" style="display:none"></span>
+    <button id="analyze-btn" title="Tổng hợp các câu gần nhất → gợi ý trả lời">✨ Suggest</button>
+  </div>
+
+  <div id="source-panel" style="display:none">
+    <div id="source-panel-header">
+      <span>Choose Screen / Tab</span>
+      <input id="source-search" type="text" placeholder="Search..." />
+    </div>
+    <div id="source-grid"></div>
   </div>
 
   <div id="status-bar">Ready — Ctrl+Shift+Space to hide</div>
 
-  <div id="results">
-    <div class="empty-hint">
-      Select a device and press Start.<br/>
-      Or use <strong>Ask</strong> to practice manually.
+  <!-- Two-panel main area -->
+  <div id="main-area">
+
+    <!-- LEFT: Live transcript -->
+    <div id="left-panel">
+      <div class="panel-header">
+        <span>🎙 Transcript</span>
+        <div class="panel-header-right">
+          <span id="left-word-count"></span>
+          <button id="clear-transcript-btn" title="Xóa buffer">✕</button>
+        </div>
+      </div>
+      <div id="transcript-results">
+        <div class="empty-hint">Transcript sẽ hiện ở đây.<br/>Bấm <strong>Start</strong> hoặc bật <strong>CC</strong>.</div>
+      </div>
     </div>
+
+    <!-- Draggable divider -->
+    <div id="panel-divider" title="Kéo để điều chỉnh kích thước"></div>
+
+    <!-- RIGHT: Suggestions + Ask -->
+    <div id="right-panel">
+      <div id="suggestion-results">
+        <div class="empty-hint">Bấm <strong>✨ Suggest</strong><br/>để nhận gợi ý trả lời AI.</div>
+      </div>
+      <div id="manual-section">
+        <textarea id="manual-text" placeholder="Gõ câu hỏi để luyện mock interview — Ctrl+Enter để gửi..."></textarea>
+        <button id="manual-ask">Ask ↵</button>
+      </div>
+    </div>
+
   </div>
 
   <!-- Settings panel -->
@@ -59,13 +102,22 @@
         <span class="toggle-slider"></span>
       </label>
     </div>
-  </div>
-
-  <!-- Manual ask panel -->
-  <button id="manual-toggle" class="panel-toggle">▾ Ask a Question</button>
-  <div id="manual-panel" class="bottom-panel" style="display:none">
-    <textarea id="manual-text" placeholder="Type or paste an interview question to practice..."></textarea>
-    <button id="manual-ask">Ask</button>
+    <div class="panel-row">
+      <label>Answer style</label>
+      <select id="setting-answerstyle">
+        <option value="spoken" selected>🗣 Spoken (short)</option>
+        <option value="technical">⚙ Technical</option>
+        <option value="star">⭐ STAR Story</option>
+        <option value="all">📋 All types</option>
+      </select>
+    </div>
+    <div class="panel-row">
+      <label>Speaker detection</label>
+      <label class="toggle">
+        <input type="checkbox" id="setting-diarize" />
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
   </div>
 
   <!-- Resume panel -->

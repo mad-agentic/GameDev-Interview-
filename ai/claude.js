@@ -1,5 +1,6 @@
 const axios = require('axios');
 const { buildSystemPrompt } = require('./prompt');
+const { getProfile } = require('../store/context');
 
 /**
  * Sends transcript text to Claude and returns structured game dev interview suggestions.
@@ -8,13 +9,13 @@ const { buildSystemPrompt } = require('./prompt');
  * @param {string} resume - Optional candidate resume for personalization
  * @returns {Promise<{translation: string, suggestions: Array, keywords: Array, difficulty: string}>}
  */
-async function analyze(text, resume = '') {
+async function analyze(text, resume = '', answerStyle = 'spoken') {
   const res = await axios.post(
     'https://api.anthropic.com/v1/messages',
     {
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 1000,
-      system: buildSystemPrompt(resume),
+      model: process.env.CLAUDE_MODEL || 'claude-haiku-4-5-20251014',
+      max_tokens: 1200,
+      system: buildSystemPrompt(resume, getProfile(), answerStyle),
       messages: [{ role: 'user', content: text }]
     },
     {
@@ -26,11 +27,20 @@ async function analyze(text, resume = '') {
     }
   );
 
-  const body = res.data.content[0].text;
-  // Extract JSON object even if Claude wraps it in markdown or adds preamble
-  const match = body.match(/\{[\s\S]*\}/);
-  if (!match) throw new Error('No JSON in Claude response: ' + body.slice(0, 100));
-  return JSON.parse(match[0]);
+  const body = res.data.content[0].text.trim();
+
+  // Strip markdown fences if present
+  const stripped = body.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+
+  // Extract outermost JSON object
+  const match = stripped.match(/\{[\s\S]*\}/);
+  if (!match) throw new Error('No JSON in Claude response: ' + body.slice(0, 120));
+
+  try {
+    return JSON.parse(match[0]);
+  } catch (e) {
+    throw new Error('JSON parse error: ' + e.message + ' | raw: ' + match[0].slice(0, 80));
+  }
 }
 
 module.exports = { analyze };
