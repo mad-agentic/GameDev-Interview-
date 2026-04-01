@@ -286,7 +286,16 @@ async function runDiarizePipeline(buffer) {
 
 // ── IPC handlers ──────────────────────────────────────────────────────────────
 
-ipcMain.handle('get-devices', () => listDevices());
+ipcMain.handle('get-devices', () => {
+  try {
+    return listDevices();
+  } catch (err) {
+    const detail = err?.message || String(err || 'Unknown audio error');
+    console.error('[get-devices error]', detail);
+    win.webContents.send('status', 'Audio init error: ' + detail.slice(0, 80));
+    return [];
+  }
+});
 
 // Window controls
 ipcMain.handle('win-minimize', () => win.minimize());
@@ -302,24 +311,32 @@ ipcMain.handle('start-capture', async (_, deviceId) => {
   const { chunkCount } = getSettings();
   win.webContents.send('status', 'Listening...');
 
-  captureStream = startCapture(deviceId, chunkCount, async (chunk) => {
-    if (isPaused) return;
-    if (getSettings().diarize) {
-      await runDiarizePipeline(chunk);
-      return;
-    }
-    let text;
-    try {
-      win.webContents.send('status', 'Transcribing...');
-      text = await transcribe(chunk);
-    } catch (err) {
-      const detail = err.response?.data?.error?.message || err.message;
-      console.error('[whisper error]', detail);
-      win.webContents.send('status', 'Whisper error: ' + detail.slice(0, 60));
-      return;
-    }
-    pushTranscript(text);
-  });
+  try {
+    captureStream = startCapture(deviceId, chunkCount, async (chunk) => {
+      if (isPaused) return;
+      if (getSettings().diarize) {
+        await runDiarizePipeline(chunk);
+        return;
+      }
+      let text;
+      try {
+        win.webContents.send('status', 'Transcribing...');
+        text = await transcribe(chunk);
+      } catch (err) {
+        const detail = err.response?.data?.error?.message || err.message;
+        console.error('[whisper error]', detail);
+        win.webContents.send('status', 'Whisper error: ' + detail.slice(0, 60));
+        return;
+      }
+      pushTranscript(text);
+    });
+  } catch (err) {
+    const detail = err?.message || String(err || 'Unknown capture error');
+    console.error('[start-capture error]', detail);
+    captureStream = null;
+    win.webContents.send('status', 'Capture start error: ' + detail.slice(0, 80));
+    return;
+  }
 });
 
 ipcMain.handle('stop-capture', () => {
