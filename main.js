@@ -124,6 +124,43 @@ function extractNewCcDelta(previousText, currentText) {
   return curr;
 }
 
+function normalizeAdCheckText(text = '') {
+  // Normalize accents so VN phrases can be matched with simpler ASCII regexes.
+  return normalizeCcCompareText(text)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+function isLikelyPromoOrOutro(text = '') {
+  const normalized = normalizeAdCheckText(text);
+  if (!normalized) return false;
+
+  const promoPatterns = [
+    /\bthank(s| you)? for watching\b/,
+    /\bsee you in the next video\b/,
+    /\bsubscribe\b/,
+    /\bsubcribe\b/,
+    /\blike and share\b/,
+    /\bshare and subscribe\b/,
+    /\bfollow (us|me|for more)\b/,
+    /\bturn on notifications\b/,
+    /\bhit( the)? bell\b/,
+    /\bdang ky kenh\b/,
+    /\bhay dang ky\b/,
+    /\bdung quen dang ky\b/,
+    /\ban chuong\b/,
+    /\bbam chuong\b/,
+    /\bnhan like\b/,
+    /\blike va share\b/
+  ];
+
+  if (promoPatterns.some((re) => re.test(normalized))) return true;
+
+  const hasChannelWord = /\b(channel|kenh)\b/.test(normalized);
+  const hasPromoVerb = /\b(subscribe|dang ky|follow|like|share)\b/.test(normalized);
+  return hasChannelWord && hasPromoVerb;
+}
+
 // ── Transcript buffer (accumulates until user clicks Suggest) ─────────────────
 let transcriptBuffer = []; // [{id, text, utterances, excluded}]
 let transcriptEntrySeq = 1;
@@ -562,7 +599,9 @@ ipcMain.handle('start-screen-cc', async (_, sourceId) => {
         win.webContents.send('cc-live-text', { text: normalized, source: 'screen' });
         const delta = extractNewCcDelta(lastScreenText, normalized);
         lastScreenText = normalized;
-        if (delta) pushTranscript(delta);
+        if (delta && !isLikelyPromoOrOutro(delta)) {
+          pushTranscript(delta);
+        }
       }
       win.webContents.send('status', ccRegion ? '🎯 Region CC active...' : '📺 Screen CC active...');
     } catch (err) {
@@ -597,7 +636,9 @@ ipcMain.handle('start-clipboard-watch', () => {
       win.webContents.send('cc-live-text', { text, source: 'clipboard' });
       const delta = extractNewCcDelta(lastClipText, text);
       lastClipText = text;
-      if (delta && delta.length >= 4) pushTranscript(delta);
+      if (delta && delta.length >= 4 && !isLikelyPromoOrOutro(delta)) {
+        pushTranscript(delta);
+      }
     }
   }, 600);
   win.webContents.send('status', '📋 CC mode — watching clipboard...');
