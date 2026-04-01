@@ -36,9 +36,9 @@
       "role": "Senior Unity Developer",
       "period": "2023 – 2024",
       "highlights": [
-        "Developed casual mobile games for mass market",
-        "Optimized WebGL builds for low-end devices",
-        "Integrated AdMob and monetization systems"
+          "Built Sandwich Please, DOP, DIY, and Puzzle casual games — App Store + Google Play",
+          "Optimized performance for low-end devices; integrated AdMob, analytics, and SDK",
+          "Researched new tech, trained junior devs, designed game systems and databases"
       ]
     },
     {
@@ -46,9 +46,9 @@
       "role": "Project Manager / Senior Developer",
       "period": "2022 – 2023",
       "highlights": [
-        "Built GameFi / Play-to-Earn titles on blockchain",
-        "Integrated NFT marketplace and wallet systems into Unity",
-        "Managed cross-functional team using Agile/Scrum"
+          "Built Nekoverse — Play-to-Earn turn-based MMORPG with NFT marketplace and staking",
+          "Implemented real-time battle system, skill mechanics, and blockchain integration in Unity",
+          "Managed and assigned tasks across cross-functional team using Agile/Scrum"
       ]
     },
     {
@@ -56,9 +56,9 @@
       "role": "Technical Leader",
       "period": "2021 – 2022",
       "highlights": [
-        "Led team of 5–15 developers on RTS strategy game",
-        "Architected gameplay systems: unit AI, pathfinding, combat",
-        "Established coding standards and CI/CD pipeline"
+          "Led team of 5–15 devs on Idle Cyber NFT — RTS tower defense combined with GameFi on mobile + WebGL",
+          "Architected unit AI, pathfinding, combat, idle mechanics, and NFT marketplace integration",
+          "Established coding standards, CI/CD pipeline, and Agile/Scrum workflow"
       ]
     },
     {
@@ -66,9 +66,9 @@
       "role": "Unity Developer",
       "period": "2017 – 2021",
       "highlights": [
-        "BEEMOB, Techies Studio, 2NF Office Solutions, CSCMobi",
-        "50+ games published across App Store, Google Play, WebGL",
-        "Built core gameplay loops, UI systems, and backend integrations"
+          "BEEMOB, Techies Studio, 2NF Office Solutions, CSCMobi — 50+ games shipped",
+          "Shipped games on App Store, Google Play, WebGL — casual, action, racing, puzzle genres",
+          "Built gameplay loops, UI systems, SDK integrations, and handled full publish pipeline"
       ]
     }
   ],
@@ -133,6 +133,8 @@
         "Dùng số và tên thật: '8 years', 'Neko Global', '50+ games', 'team of 10 devs'",
         "Reflect từ kinh nghiệm cụ thể, kể cả thất bại: 'That project failed at first, but that taught me...'",
         "Nhắc đến AI/automation một cách tự nhiên khi phù hợp: 'I use AI to...'",
+        "Kết thúc bằng một câu hỏi ngược ngắn để tạo thảo luận hợp tác, không phải hỏi-đáp một chiều",
+        "Khi phù hợp, nhắc nhẹ: 'Bạn đã xem portfolio của tôi chưa? Trong đó có đầy đủ dự án và số liệu'",
         "Kết bằng insight hoặc current mindset: '...and that's still how I think about it'",
         "Dùng 'we' khi nói về team, 'I' khi nói về quyết định của bản thân",
         "Thêm chút optimism nhẹ cuối câu: 'It worked out well', 'Glad I did that'"
@@ -143,6 +145,7 @@
       "Yah, Neko Global was intense. Blockchain was new for all of us. We figured it out.",
       "Cool thing about Unity is you can go deep on optimization or stay high-level. I usually go deep.",
       "Honestly, I lean on AI tools a lot — N8N, automations, whatever speeds things up.",
+      "By the way, did you get a chance to check my portfolio? It has full project flow and metrics.",
       "I don't pick tools by hype. I pick what makes the game.",
       "Leading isn't loud. I just clear blockers and trust the team.",
       "Freelancing since 2025 — wanted to choose what I build. Best decision so far.",

@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { buildSystemPrompt } = require('./prompt');
-const { getProfile } = require('../store/context');
+const { getProfile, getPortfolio } = require('../store/context');
 
 /**
  * Sends transcript text to Claude and returns structured game dev interview suggestions.
@@ -15,7 +15,7 @@ async function analyze(text, resume = '', answerStyle = 'spoken') {
     {
       model: process.env.CLAUDE_MODEL || 'claude-haiku-4-5-20251014',
       max_tokens: 1200,
-      system: buildSystemPrompt(resume, getProfile(), answerStyle),
+        system: buildSystemPrompt(resume, getProfile(), answerStyle, getPortfolio()),
       messages: [{ role: 'user', content: text }]
     },
     {

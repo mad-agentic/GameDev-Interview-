@@ -11,6 +11,7 @@ const regionBadge       = document.getElementById('region-badge');
 const leftWordCount     = document.getElementById('left-word-count');
 const transcriptResults = document.getElementById('transcript-results');
 const suggestionResults = document.getElementById('suggestion-results');
+const reverseAskList   = document.getElementById('reverse-ask-list');
 const transcriptTranslateCache = new Map();
 let liveCcCard = null;
 
@@ -320,7 +321,87 @@ const cardMap = new Map();
 function clearResults() {
   transcriptResults.innerHTML = '<div class="empty-hint">Transcript sẽ hiện ở đây.<br/>Bấm <strong>Start</strong> hoặc bật <strong>CC</strong>.</div>';
   suggestionResults.innerHTML = '<div class="empty-hint">Bấm <strong>✨ Suggest</strong><br/>để nhận gợi ý trả lời AI.</div>';
+  if (reverseAskList) {
+    reverseAskList.innerHTML = '<div class="reverse-empty">Sau khi bấm Suggest, câu hỏi hỏi ngược sẽ hiện ở đây.</div>';
+  }
   cardMap.clear();
+}
+
+function uniqueQuestions(list = []) {
+  const out = [];
+  const seen = new Set();
+  for (const q of list) {
+    const item = typeof q === 'string'
+      ? { en: String(q || '').trim(), vi: String(q || '').trim() }
+      : {
+          en: String(q?.en || '').trim(),
+          vi: String(q?.vi || '').trim()
+        };
+
+    if (!item.en && !item.vi) continue;
+    if (!item.en) item.en = item.vi;
+    if (!item.vi) item.vi = item.en;
+
+    const key = `${item.en.toLowerCase()}|${item.vi.toLowerCase()}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  return out;
+}
+
+function extractQuestionFromAnswer(answer = '') {
+  const text = String(answer || '').trim();
+  if (!text) return null;
+  const questions = text.match(/[^?.!\n]*\?/g);
+  if (!questions || !questions.length) return null;
+  const last = questions[questions.length - 1].trim();
+  return last || null;
+}
+
+function buildFallbackReverseQuestions(result) {
+  const fromAnswers = (result?.suggestions || []).map((s) => ({
+    en: extractQuestionFromAnswer(s?.answer_en || s?.answer || ''),
+    vi: extractQuestionFromAnswer(s?.answer_vi || s?.answer || '')
+  })).filter((q) => q.en || q.vi);
+
+  const defaults = [
+    {
+      en: 'Would you like me to go deeper into technical details or leadership impact?',
+      vi: 'Anh/chị muốn tôi đào sâu hơn về kỹ thuật hay tác động ở góc độ leadership?'
+    },
+    {
+      en: 'Did you get a chance to review my portfolio with project metrics?',
+      vi: 'Anh/chị đã có dịp xem portfolio của tôi với các số liệu dự án chưa?'
+    },
+    {
+      en: 'Which part matters most for this role: optimization, architecture, or team collaboration?',
+      vi: 'Với vị trí này, phần nào quan trọng nhất: optimization, architecture hay team collaboration?'
+    }
+  ];
+
+  return uniqueQuestions([...fromAnswers, ...defaults]).slice(0, 5);
+}
+
+function renderReverseAskBoard(result) {
+  if (!reverseAskList) return;
+  const modelQuestions = Array.isArray(result?.reverse_questions) ? result.reverse_questions : [];
+  const normalized = uniqueQuestions(modelQuestions);
+  const questions = normalized.length
+    ? normalized.slice(0, 5)
+    : buildFallbackReverseQuestions(result);
+
+  if (!questions.length) {
+    reverseAskList.innerHTML = '<div class="reverse-empty">Chưa có gợi ý câu hỏi hỏi ngược cho nội dung này.</div>';
+    return;
+  }
+
+  reverseAskList.innerHTML = questions.map((q, i) => `
+    <div class="reverse-item">
+      <div class="reverse-row"><span class="reverse-index">Q${i + 1} EN.</span>${escapeHtml(q.en)}</div>
+      <div class="reverse-row reverse-vi"><span class="reverse-index">Q${i + 1} VI.</span>${escapeHtml(q.vi)}</div>
+    </div>
+  `).join('');
 }
 
 function showTranslation() {
@@ -720,6 +801,9 @@ window.copilot.onResult(({ text, utterances, result }) => {
     card.innerHTML = `
       <div class="transcript">"${text.slice(0,120)}${text.length>120?'…':''}"</div>
       <div class="card-error">⚠ ${result._error.slice(0, 120)}</div>`;
+    if (reverseAskList) {
+      reverseAskList.innerHTML = '<div class="reverse-empty">Không lấy được gợi ý hỏi ngược vì phiên phân tích đang lỗi.</div>';
+    }
     return;
   }
 
@@ -760,4 +844,6 @@ window.copilot.onResult(({ text, utterances, result }) => {
       <span class="difficulty-badge ${diffClass}">${result.difficulty || 'medium'}</span>
     </div>
   `;
+
+  renderReverseAskBoard(result);
 });

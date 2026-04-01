@@ -10,6 +10,15 @@ try {
 
 function getProfile() { return profile; }
 
+// ── Portfolio (loaded from portfolio.json, used for project-level detail) ─────
+let portfolio = {};
+try {
+  const portfolioRaw = fs.readFileSync(path.join(__dirname, 'portfolio.json'), 'utf-8');
+  portfolio = JSON.parse(portfolioRaw);
+} catch (_) { /* no portfolio file — graceful fallback */ }
+
+function getPortfolio() { return portfolio; }
+
 // ── Resume ───────────────────────────────────────────────────────────────────
 let resume = '';
 function getResume()       { return resume; }
@@ -40,6 +49,7 @@ function updateSettings(patch) { Object.assign(settings, patch); }
 
 module.exports = {
   getProfile,
+  getPortfolio,
   getResume, setResume,
   addToSession, getSession, clearSession,
   getSettings, updateSettings

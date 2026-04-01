@@ -3,7 +3,8 @@
     "generated": "2026-04-01",
     "source": "hoatv2211.github.io",
     "purpose": "Comprehensive portfolio profile — who is HoaTV (MAD)?",
-    "version": "1.0.0"
+    "version": "1.1.0",
+    "lastUpdated": "2026-04-01"
   },
 
   "identity": {
@@ -589,7 +590,7 @@
   },
 
   "personalityProfile": {
-    "workStyle": "Full-cycle developer who thrives from concept to making games. Combines deep technical skill with product-minded leadership.",
+    "workStyle": "Full-cycle developer who thrives from concept to shipping. Combines deep technical skill with product-minded leadership.",
     "strengths": [
       "Solo-capable: can plan, design, build, and ship a complete product alone",
       "Team multiplier: skilled at mentoring and orchestrating distributed teams",
@@ -611,10 +612,184 @@
     "companies": 8,
     "maxTeamLed": 15,
     "platforms": ["App Store", "Google Play", "WebGL", "Telegram Mini App", "World App"],
-    "notableMilestones": [
-      "200K+ downloads on Heroic Defense (one month post-launch)",
-      "Top 1 ranking on World App for Dalgona during launch",
-      "Founded mad-agentic GitHub organization for AI projects"
-    ]
+    "notableMilestones": {
+      "_note": "Milestones grouped by project type for clarity",
+
+      "gameFiProjects": {
+        "label": "GameFi / Blockchain Games",
+        "description": "Play-to-Earn and NFT-integrated games built from concept to on-chain deployment",
+        "milestones": [
+          {
+            "project": "Idle Cyber (NFT)",
+            "id": "idle-cyber",
+            "period": "2021 — 2022",
+            "role": "Solo Developer / Founder",
+            "company": "BLAMEO Technology",
+            "achievements": [
+              "Solo-built a full idle tower defense game with integrated NFT marketplace (testnet)",
+              "Published on iOS, Android, and WebGL (itch.io)",
+              "First personal GameFi title — proof of concept for Play-to-Earn mechanics with wallet integration",
+              "Implemented staking-like upgrade systems and hero collection economy"
+            ],
+            "tags": ["NFT", "Idle", "Tower Defense", "Solo", "Mobile", "WebGL"]
+          },
+          {
+            "project": "Nekoverse",
+            "id": "nekoverse",
+            "period": "2022 — 2023",
+            "role": "Senior Unity Developer",
+            "company": "Neko Global",
+            "achievements": [
+              "Contributed to a full-scale Play-to-Earn MMORPG with real blockchain token economy",
+              "Integrated NFT assets, on-chain staking, and DAO governance systems into Unity",
+              "Developed real-time PvP/PvE battle systems with elemental skill mechanics",
+              "Part of a distributed team; handled performance profiling across low-end devices"
+            ],
+            "blockchain": {
+              "wallets": ["MetaMask"],
+              "features": ["NFT assets", "Staking (Neko Temple)", "DAO governance tokens", "In-game P2P marketplace"]
+            },
+            "links": {
+              "website": "https://gam3s.gg/nekoverse/",
+              "youtubeTrailer": "https://www.youtube.com/embed/4FiWVHmdfig"
+            },
+            "tags": ["NFT", "MMORPG", "Play-to-Earn", "DAO", "Blockchain", "Mobile"]
+          }
+        ]
+      },
+
+      "publisherProjects": {
+        "label": "Publisher / Studio-backed Games",
+        "description": "Projects developed under game publishers or as part of studio teams, covering MMORPG, casual, puzzle, and idle genres",
+        "milestones": [
+          {
+            "project": "MU: Loren Mobile",
+            "id": "mu-loren-mobile",
+            "period": "2024 — 2025",
+            "role": "Senior Unity Developer",
+            "publisher": "ADNX Games (Vietnam)",
+            "genre": "MMORPG",
+            "achievements": [
+              "Contributed to a major licensed MMORPG title — a mobile port of the legendary MU Online IP",
+              "Developed quest system, class mechanics (5 classes), and monster spawning logic",
+              "Optimized 3D rendering pipeline for smooth performance on mid-range mobile hardware",
+              "Implemented in-game events: Blood Castle, Devil Square, Chaos Castle, Arena"
+            ],
+            "ipNote": "MU Online is one of the most iconic MMORPGs in Asia, particularly popular in Vietnam",
+            "links": {
+              "website": "https://lucdia.adnxgames.vn/trang-chu",
+              "googlePlay": "https://play.google.com/store/apps/details?id=com.mobi.ldlorencia",
+              "youtubeTrailer": "https://www.youtube.com/embed/UTqN9xl2pBM"
+            },
+            "tags": ["MMORPG", "Publisher", "Licensed IP", "3D", "Mobile", "Vietnam"]
+          },
+          {
+            "project": "Tình Thiên Hạ (JX Mobile)",
+            "id": "tinh-thien-ha-jx",
+            "period": "2023 — 2024",
+            "role": "Senior Unity Developer",
+            "publisher": "ADNX Games (Vietnam)",
+            "genre": "MMORPG",
+            "description": "Mobile adaptation of the iconic Vietnamese MMORPG JX (Kiếm Thế / Võ Lâm). One of the most beloved MMO titles in Vietnam's gaming history.",
+            "achievements": [
+              "Contributed to the development and optimization of to a major licensed MMORPG title",
+              "Ensured smooth mobile experience for large-scale PvP combat (Bang Chiến, Tống Kim)",
+              "Optimized mobile resource loading and rendering for massive multiplayer instances",
+              "Integrated ADNX tracking SDKs and specific Vietnamese payment gateways"
+            ],
+            "ipNote": "JX (Kiếm Thế / Võ Lâm) is a legendary MMORPG franchise, deeply embedded in Vietnamese gaming culture",
+            "links": {
+              "website": "https://tinhthienha1.adnxgames.vn/"
+            },
+            "tags": ["MMORPG", "Publisher", "Licensed IP", "Vietnam", "Iconic", "Mobile"]
+          },
+          {
+            "project": "Sandwich Please!",
+            "id": "sandwich-please",
+            "period": "2023 — 2024",
+            "role": "Senior Unity Developer",
+            "publisher": "Gamota (Gabros Team)",
+            "genre": "Idle Simulation / Tycoon",
+            "achievements": [
+              "Published on both App Store and Google Play under Gamota's label",
+              "Core mechanics: idle income, menu expansion, shop upgrades, customer satisfaction systems",
+              "Integrated analytics for player retention and engagement tracking"
+            ],
+            "links": {
+              "appStore": "https://apps.apple.com/us/app/sandwich-please/id6475763350",
+              "googlePlay": "https://play.google.com/store/apps/details?id=com.gb.sandwichidle.burgerplease.pizza.coffee"
+            },
+            "tags": ["Casual", "Idle", "Tycoon", "Publisher", "Mobile"]
+          },
+          {
+            "project": "Heroic Defense",
+            "id": "heroic-defense",
+            "period": "Sep 2024 — Jan 2025",
+            "role": "Core Game Developer / Lead Dev",
+            "publisher": "Freelance (Global Client)",
+            "genre": "Tower Defense",
+            "achievements": [
+              "200K+ downloads within one month of release",
+              "10K–50K downloads in the first week on launch day",
+              "Solo-led core gameplay: enemies, weapons, skills, gacha, IAP, SDK",
+              "Published globally on both App Store and Google Play"
+            ],
+            "links": {
+              "googlePlay": "https://play.google.com/store/apps/details?id=com.hd.heroic.defense",
+              "appStore": "https://apps.apple.com/app/heroic-defense/id6742034673"
+            },
+            "tags": ["Tower Defense", "IAP", "Gacha", "Global", "Solo Lead", "Mobile"]
+          }
+        ]
+      },
+
+      "web3MiniApps": {
+        "label": "Web3 Mini Apps & Telegram Games",
+        "description": "Lightweight games and tools built natively for blockchain ecosystems (World App, Telegram)",
+        "milestones": [
+          {
+            "project": "Dalgona - Worldchain",
+            "id": "dalgona-worldchain",
+            "period": "Jun 2025 — Aug 2025",
+            "role": "Solo Developer",
+            "platform": "World App (WorldID/Worldchain)",
+            "achievements": [
+              "🏆 Top 1 on World App game ranking during launch period",
+              "Engaged hundreds of thousands of users in the Worldcoin ecosystem",
+              "Solo-built entire game: mechanics, difficulty curve, UI/UX, leaderboard, publishing",
+              "Optimized WebGL build for seamless Web3 Mini App performance"
+            ],
+            "links": {
+              "worldApp": "https://world.org/ecosystem/app_87ae73f8d0558b142fb9c5fc7811b8af"
+            },
+            "tags": ["Web3", "Mini App", "World App", "Solo", "Top 1", "Casual"]
+          }
+        ]
+      },
+
+      "agenticAndTools": {
+        "label": "AI & Agentic Projects",
+        "description": "Personal projects exploring AI agent architectures and developer tooling",
+        "milestones": [
+          {
+            "project": "ProxyAPI.MAD",
+            "id": "proxyapi-mad",
+            "period": "2024 — Present",
+            "role": "Founder / Solo Developer",
+            "achievements": [
+              "Founded mad-agentic GitHub organization for AI tooling",
+              "Built a multi-provider AI API proxy with dashboard, chat UI, logs, and key management",
+              "Designed extensible agent architecture for future automation pipelines"
+            ],
+            "links": {
+              "github": "https://github.com/mad-agentic/ProxyAPI.MAD",
+              "githubOrg": "https://github.com/mad-agentic",
+              "website": "https://mad-agentic.github.io/ProxyAPI.MAD"
+            },
+            "tags": ["AI", "Agentic", "Open Source", "Developer Tool", "API Proxy"]
+          }
+        ]
+      }
+    }
   }
 }

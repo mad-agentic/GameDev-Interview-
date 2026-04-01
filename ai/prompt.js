@@ -41,8 +41,8 @@ const STYLE_CONFIG = {
  * @param {string} answerStyle - spoken | technical | star | all
  * @returns {string} System prompt string
  */
-function buildSystemPrompt(resume = '', profile = {}, answerStyle = 'spoken') {
-  const profileBlock = buildProfileBlock(profile, resume);
+function buildSystemPrompt(resume = '', profile = {}, answerStyle = 'spoken', portfolio = {}) {
+  const profileBlock = buildProfileBlock(profile, portfolio, resume);
   const style = STYLE_CONFIG[answerStyle] || STYLE_CONFIG.spoken;
   const exampleSuggestions = style.suggestions
     .map(s => `    { "label": "${s.label}", "answer_vi": "...", "answer_en": "...", "tags": ${JSON.stringify(s.tags)} }`)
@@ -55,6 +55,19 @@ VOICE RULES — every answer must sound like this specific person:
 - Use their real companies, numbers, stack — never generic filler
 - Reflect their calm-but-deep personality: measured, honest, occasionally self-deprecating but optimistic
 - Short sentences. Real examples. No buzzwords. End with a positive insight or lesson.
+- Keep answers concise and focused. Do not over-explain.
+
+COLLABORATIVE DISCUSSION RULES (important):
+- This should feel like a two-way discussion, not one-way Q&A.
+- Every suggestion should include: (1) a direct answer, then (2) one short follow-up question back to interviewer.
+- Keep each suggestion compact: 2-4 short sentences total.
+- Follow-up question should be practical and cooperative, for example:
+  * "Would you like me to go deeper into the technical part or team leadership part?"
+  * "Did you have time to review my portfolio? It already includes full project details and metrics."
+- Keep the follow-up question short (max 1 sentence), natural, and non-defensive.
+- Do not ask aggressive/challenging questions. Tone must stay respectful and constructive.
+- Do not repeat the same follow-up question across all 3 suggestions.
+- Use the portfolio follow-up only when relevant (experience, achievements, project depth, or metrics).
 
 ANSWER STYLE RULE: ${style.instruction}
 
@@ -62,9 +75,10 @@ BILINGUAL FORMAT RULES (very important):
 - "answer_vi": the full answer in Vietnamese — so the candidate understands the meaning clearly
 - "answer_en": the English version to SPEAK OUT LOUD — must follow these rules:
   * Simple vocabulary only (A2–B1 level English)
-  * Short sentences, max 200 characters
+  * Short sentences, max 260 characters
   * Natural spoken English, NOT written/formal English
   * No complex grammar, no passive voice, no jargon the candidate cannot pronounce
+  * Include one short collaborative follow-up question at the end
   * Example good EN: "I worked at Neko Global for 2 years. I built the P2E game system using Unity and blockchain. My team had 10 people."
   * Example bad EN: "Having been extensively involved in the implementation of blockchain-integrated gameplay systems..."
 
@@ -73,13 +87,18 @@ CRITICAL RULE: You are a JSON-only output machine. NEVER write prose, explanatio
 Given any text input:
 1. Translate it EN↔VN for the "translation" field
 2. Suggest 3 interview-style answers using the candidate's real background
-3. Output ONLY raw JSON — no markdown fences, no text before or after
+3. Suggest 3-5 short follow-up questions for the candidate to ask back to interviewer in a collaborative tone, and make them bilingual
+4. Output ONLY raw JSON — no markdown fences, no text before or after
 
 REQUIRED OUTPUT FORMAT (raw JSON, nothing else):
 {
   "translation": "...",
   "suggestions": [
 ${exampleSuggestions}
+  ],
+  "reverse_questions": [
+    { "vi": "...", "en": "..." },
+    { "vi": "...", "en": "..." }
   ],
   "keywords": ["key", "terms"],
   "difficulty": "easy|medium|hard"
@@ -89,7 +108,7 @@ ${exampleSuggestions}
 /**
  * Converts structured profile object into a readable text block for the prompt.
  */
-function buildProfileBlock(profile, resume) {
+function buildProfileBlock(profile, portfolio, resume) {
   if (!profile || !profile.name) {
     return resume ? `Candidate background:\n${resume}\n` : '';
   }
@@ -121,7 +140,7 @@ ${exp}
 
 Achievements:
 ${(profile.achievements || []).map(a => `  - ${a}`).join('\n')}
-
+${buildPortfolioBlock(portfolio)}
 === PERSONALITY & VOICE ===
 ${p.summary || ''}
 
@@ -144,6 +163,29 @@ OFF-TOPIC FALLBACK — if the input is not a real interview question, use this a
 
 =========================
 ${resume ? `\nExtra context: ${resume}` : ''}`.trim();
+}
+
+/**
+ * Builds a concise notable-projects block from portfolio.json for STAR answer grounding.
+ */
+function buildPortfolioBlock(portfolio) {
+  if (!portfolio || !Array.isArray(portfolio.projects) || portfolio.projects.length === 0) return '';
+
+  const featured = portfolio.projects
+    .filter(p => (p.myContributions && p.myContributions.length > 0) || (p.achievements && p.achievements.length > 0))
+    .slice(0, 7);
+
+  if (!featured.length) return '';
+
+  const lines = featured.map(p => {
+    const meta = [p.role, p.genre, p.period, p.teamSize ? `team ${p.teamSize}` : null]
+      .filter(Boolean).join(' | ');
+    const contribs = (p.myContributions || []).slice(0, 3).map(c => `    • ${c}`).join('\n');
+    const ach = (p.achievements || []).map(a => `    ★ ${a}`).join('\n');
+    return [`  [${p.title}] — ${meta}`, contribs, ach].filter(Boolean).join('\n');
+  }).join('\n\n');
+
+  return `\n=== NOTABLE PROJECTS (cite these in STAR answers — use real names, numbers, and details) ===\n${lines}\n\n`;
 }
 
 module.exports = { buildSystemPrompt };
