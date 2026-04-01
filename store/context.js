@@ -36,9 +36,9 @@ function clearSession(){ sessionHistory = []; }
 
 // ── Settings ──────────────────────────────────────────────────────────────────
 let settings = {
-  chunkCount:      10,      // audio chunks before sending to Whisper (~1s per chunk)
+  chunkCount:       5,      // audio chunks before sending to Whisper (~0.5s per chunk)
   minWords:         4,      // skip transcripts shorter than this
-  showTranslation: true,    // show EN↔VN translation in cards
+  showTranslation: false,   // show EN↔VN translation in cards
   answerStyle:    'spoken', // spoken | technical | star | all
   diarize:        false,    // enable speaker detection (AssemblyAI)
   mySpeaker:      null      // speaker label user identifies as — filtered out from copilot

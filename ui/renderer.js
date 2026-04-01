@@ -34,6 +34,18 @@ const panelDivider  = document.getElementById('panel-divider');
 
 const PANEL_WIDTH_KEY = 'gamedev.leftPanelWidth';
 
+window.addEventListener('error', (event) => {
+  const msg = event?.error?.message || event?.message || 'Unknown UI error';
+  console.error('[renderer error]', event?.error || msg);
+  if (statusBar) statusBar.textContent = 'UI error: ' + msg;
+});
+
+window.addEventListener('unhandledrejection', (event) => {
+  const msg = event?.reason?.message || String(event?.reason || 'Unknown promise rejection');
+  console.error('[renderer unhandledrejection]', event?.reason || msg);
+  if (statusBar) statusBar.textContent = 'UI promise error: ' + msg;
+});
+
 function clampLeftPanelWidth(width) {
   const totalWidth = mainArea?.clientWidth || window.innerWidth || 780;
   const minLeft = 220;
@@ -563,7 +575,7 @@ function markMySpeaker(label, el) {
 
 const txCardMap = new Map();
 
-window.copilot.onTranscriptChunk(({ text, utterances, wordCount }) => {
+window.copilot.onTranscriptChunk(({ id, text, utterances, wordCount }) => {
   // Update word count in left panel header
   leftWordCount.textContent = wordCount + 'w';
   analyzeBtn.textContent = `✨ Suggest (${wordCount}w)`;
@@ -574,6 +586,9 @@ window.copilot.onTranscriptChunk(({ text, utterances, wordCount }) => {
 
   const card = document.createElement('div');
   card.className = 'tx-card';
+  if (Number.isFinite(Number(id))) {
+    card.dataset.entryId = String(id);
+  }
   const utterHtml = buildUtterancesHtml(utterances);
   card.innerHTML = utterHtml || `
     <div class="tx-topbar">
@@ -581,14 +596,41 @@ window.copilot.onTranscriptChunk(({ text, utterances, wordCount }) => {
       <div class="tx-sub-actions">
         <button class="tx-sub-btn" type="button" data-lang="vi">Sub VN</button>
         <button class="tx-sub-btn" type="button" data-lang="en">Sub EN</button>
+        <button class="tx-skip-btn" type="button" title="Bỏ thẻ này khỏi Suggest">⊘</button>
       </div>
     </div>
     <div class="transcript tx-editable" title="Click để sửa" data-raw="${escapeHtml(text)}">${renderTranscriptHtml(text)}</div>`;
+
+  if (utterHtml) {
+    const topbar = document.createElement('div');
+    topbar.className = 'tx-topbar';
+    topbar.innerHTML = `
+      <span class="suggestions-title">CC</span>
+      <div class="tx-sub-actions">
+        <button class="tx-skip-btn" type="button" title="Bỏ thẻ này khỏi Suggest">⊘</button>
+      </div>
+    `;
+    card.prepend(topbar);
+  }
 
   card.querySelectorAll('.tx-sub-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       translateCard(card, text, btn.dataset.lang || 'vi', true);
     });
+  });
+
+  card.querySelector('.tx-skip-btn')?.addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    const nextExcluded = !card.classList.contains('excluded');
+    const entryId = Number(card.dataset.entryId);
+    if (Number.isFinite(entryId)) {
+      await window.copilot.setTranscriptEntryExcluded(entryId, nextExcluded);
+    }
+
+    card.classList.toggle('excluded', nextExcluded);
+    btn.classList.toggle('active', nextExcluded);
+    btn.title = nextExcluded ? 'Đưa thẻ này trở lại Suggest' : 'Bỏ thẻ này khỏi Suggest';
+    btn.textContent = nextExcluded ? '↺' : '⊘';
   });
 
   if (!utterHtml && ccActive && showTranslation()) {
@@ -629,6 +671,12 @@ window.copilot.onTranscriptChunk(({ text, utterances, wordCount }) => {
     txCardMap.get(oldest)?.remove();
     txCardMap.delete(oldest);
   }
+});
+
+window.copilot.onTranscriptMeta(({ wordCount }) => {
+  const wc = Number(wordCount) || 0;
+  leftWordCount.textContent = wc > 0 ? `${wc}w` : '';
+  analyzeBtn.textContent = wc > 0 ? `✨ Suggest (${wc}w)` : '✨ Suggest';
 });
 
 window.copilot.onTranscriptCleared(() => {
@@ -778,6 +826,7 @@ window.switchAnsTab = function(btn) {
 // ── Results rendering ─────────────────────────────────────────────────────────
 
 window.copilot.onResult(({ text, utterances, result }) => {
+  try {
   // Remove empty hint on first result
   const hint = suggestionResults.querySelector('.empty-hint');
   if (hint) hint.remove();
@@ -846,4 +895,8 @@ window.copilot.onResult(({ text, utterances, result }) => {
   `;
 
   renderReverseAskBoard(result);
+  } catch (err) {
+    console.error('[onResult render error]', err);
+    if (statusBar) statusBar.textContent = 'Render error: ' + (err?.message || 'Unknown');
+  }
 });

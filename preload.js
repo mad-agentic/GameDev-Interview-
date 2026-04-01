@@ -44,6 +44,8 @@ contextBridge.exposeInMainWorld('copilot', {
   // Manual analyze trigger
   analyzeNow:       ()      => ipcRenderer.invoke('analyze-now'),
   clearTranscript:  ()      => ipcRenderer.invoke('clear-transcript'),
+  removeTranscriptEntry: (id) => ipcRenderer.invoke('remove-transcript-entry', id),
+  setTranscriptEntryExcluded: (id, excluded) => ipcRenderer.invoke('set-transcript-entry-excluded', id, excluded),
 
   // CC region selection
   selectCCRegion:    ()     => ipcRenderer.invoke('select-cc-region'),
@@ -52,6 +54,7 @@ contextBridge.exposeInMainWorld('copilot', {
 
   // Events
   onTranscriptChunk:   (cb) => ipcRenderer.on('transcript-chunk',   (_, d) => cb(d)),
+  onTranscriptMeta:    (cb) => ipcRenderer.on('transcript-meta',    (_, d) => cb(d)),
   onCcLiveText:        (cb) => ipcRenderer.on('cc-live-text',       (_, d) => cb(d)),
   onTranscriptCleared: (cb) => ipcRenderer.on('transcript-cleared', ()     => cb()),
   onRegionConfirmed:   (cb) => ipcRenderer.on('region-confirmed',   (_, r) => cb(r)),

@@ -29,6 +29,26 @@ let regionIndicatorWin = null;
 const translateCache = new Map();
 const SCREEN_CC_INTERVAL_MS = 700;
 
+function safeStatus(msg) {
+  try {
+    if (win && !win.isDestroyed()) {
+      win.webContents.send('status', String(msg || 'Unknown runtime error'));
+    }
+  } catch (_) { /* ignore nested failures */ }
+}
+
+// Keep the app alive and surface diagnostics instead of crashing the process.
+process.on('uncaughtException', (err) => {
+  console.error('[uncaughtException]', err);
+  safeStatus('Runtime error: ' + (err?.message || 'Unknown error'));
+});
+
+process.on('unhandledRejection', (reason) => {
+  console.error('[unhandledRejection]', reason);
+  const message = reason && reason.message ? reason.message : String(reason || 'Unknown rejection');
+  safeStatus('Promise error: ' + message);
+});
+
 function normalizeCcText(text = '') {
   return String(text).replace(/\s+/g, ' ').trim();
 }
@@ -105,16 +125,48 @@ function extractNewCcDelta(previousText, currentText) {
 }
 
 // ── Transcript buffer (accumulates until user clicks Suggest) ─────────────────
-let transcriptBuffer = []; // [{text, utterances}]
+let transcriptBuffer = []; // [{id, text, utterances, excluded}]
+let transcriptEntrySeq = 1;
+
+function getTranscriptWordCount(includeExcluded = true) {
+  return transcriptBuffer
+    .filter((e) => includeExcluded || !e.excluded)
+    .reduce((n, e) => n + (e.text ? e.text.split(/\s+/).length : 0), 0);
+}
+
+function emitTranscriptMeta() {
+  const totalWordCount = getTranscriptWordCount(true);
+  const includedWordCount = getTranscriptWordCount(false);
+  win.webContents.send('transcript-meta', {
+    wordCount: includedWordCount,
+    includedWordCount,
+    totalWordCount,
+    entryCount: transcriptBuffer.length,
+    includedEntryCount: transcriptBuffer.filter((e) => !e.excluded).length
+  });
+}
 
 function pushTranscript(text, utterances = null) {
   if (!text || !text.trim()) return;
   const { minWords } = getSettings();
   const words = text.trim().split(/\s+/);
   if (words.length < minWords) return;
-  transcriptBuffer.push({ text: text.trim(), utterances });
-  const wordCount = transcriptBuffer.reduce((n, e) => n + e.text.split(/\s+/).length, 0);
-  win.webContents.send('transcript-chunk', { text: text.trim(), utterances, wordCount });
+  const entry = {
+    id: transcriptEntrySeq++,
+    text: text.trim(),
+    utterances,
+    excluded: false
+  };
+  transcriptBuffer.push(entry);
+  const wordCount = getTranscriptWordCount(false);
+  win.webContents.send('transcript-chunk', {
+    id: entry.id,
+    text: entry.text,
+    utterances,
+    excluded: false,
+    wordCount
+  });
+  emitTranscriptMeta();
 }
 
 app.whenReady().then(() => {
@@ -276,6 +328,7 @@ ipcMain.handle('stop-capture', () => {
     captureStream = null;
     isPaused = false;
     transcriptBuffer = [];
+    emitTranscriptMeta();
     win.webContents.send('transcript-cleared');
     win.webContents.send('status', 'Stopped.');
   }
@@ -349,16 +402,51 @@ ipcMain.handle('analyze-now', async () => {
     win.webContents.send('status', 'Nothing captured yet.');
     return;
   }
-  const text       = transcriptBuffer.map(e => e.text).join(' ');
-  const utterances = transcriptBuffer.flatMap(e => e.utterances || []);
+  const includedEntries = transcriptBuffer.filter((e) => !e.excluded);
+  if (!includedEntries.length) {
+    win.webContents.send('status', 'No active cards selected for Suggest.');
+    return;
+  }
+  const text       = includedEntries.map(e => e.text).join(' ');
+  const utterances = includedEntries.flatMap(e => e.utterances || []);
   transcriptBuffer = [];
+  emitTranscriptMeta();
   win.webContents.send('transcript-cleared');
   await runPipeline(text, utterances.length ? utterances : null);
 });
 
 ipcMain.handle('clear-transcript', () => {
   transcriptBuffer = [];
+  emitTranscriptMeta();
   win.webContents.send('transcript-cleared');
+});
+
+ipcMain.handle('remove-transcript-entry', (_, entryId) => {
+  const id = Number(entryId);
+  if (!Number.isFinite(id)) return { ok: false, wordCount: getTranscriptWordCount(false) };
+
+  const before = transcriptBuffer.length;
+  transcriptBuffer = transcriptBuffer.filter((e) => e.id !== id);
+  const removed = transcriptBuffer.length !== before;
+
+  emitTranscriptMeta();
+  return { ok: removed, wordCount: getTranscriptWordCount(false) };
+});
+
+ipcMain.handle('set-transcript-entry-excluded', (_, entryId, excluded) => {
+  const id = Number(entryId);
+  if (!Number.isFinite(id)) {
+    return { ok: false, excluded: false, wordCount: getTranscriptWordCount(false) };
+  }
+
+  const entry = transcriptBuffer.find((e) => e.id === id);
+  if (!entry) {
+    return { ok: false, excluded: false, wordCount: getTranscriptWordCount(false) };
+  }
+
+  entry.excluded = Boolean(excluded);
+  emitTranscriptMeta();
+  return { ok: true, excluded: entry.excluded, wordCount: getTranscriptWordCount(false) };
 });
 
 // ── CC Region selection ───────────────────────────────────────────────────────

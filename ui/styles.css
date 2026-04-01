@@ -799,6 +799,11 @@ body.is-resizing-panels * {
 }
 .tx-card .transcript { font-style: normal; color: #94a3b8; }
 .tx-card.consumed    { opacity: 0.4; border-left-color: rgba(167,139,250,0.3); }
+.tx-card.excluded {
+  opacity: 0.35;
+  border-left-color: rgba(248,113,113,0.45);
+  filter: grayscale(0.25);
+}
 
 .tx-topbar {
   display: flex;
@@ -830,6 +835,27 @@ body.is-resizing-panels * {
 
 .tx-sub-btn:hover {
   background: rgba(125, 211, 252, 0.22);
+}
+
+.tx-skip-btn {
+  -webkit-app-region: no-drag;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: rgba(248, 113, 113, 0.12);
+  color: #fca5a5;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.tx-skip-btn:hover {
+  background: rgba(248, 113, 113, 0.24);
+}
+
+.tx-skip-btn.active {
+  border-color: rgba(74, 222, 128, 0.4);
+  background: rgba(74, 222, 128, 0.18);
+  color: #86efac;
 }
 
 .tx-editable {

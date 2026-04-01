@@ -27,7 +27,12 @@ async function analyze(text, resume = '', answerStyle = 'spoken') {
     }
   );
 
-  const body = res.data.content[0].text.trim();
+  const rawText = res?.data?.content?.[0]?.text;
+  const body = typeof rawText === 'string' ? rawText.trim() : '';
+
+  if (!body) {
+    throw new Error('Empty Claude response body');
+  }
 
   // Strip markdown fences if present
   const stripped = body.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
