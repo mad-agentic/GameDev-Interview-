@@ -41,7 +41,12 @@ let settings = {
   showTranslation: false,   // show EN↔VN translation in cards
   answerStyle:    'spoken', // spoken | technical | star | all
   diarize:        false,    // enable speaker detection (AssemblyAI)
-  mySpeaker:      null      // speaker label user identifies as — filtered out from copilot
+  mySpeaker:      null,     // speaker label user identifies as — filtered out from copilot
+  // AI provider config
+  aiProvider:     'env',    // 'env' | '9router' | 'custom'
+  aiEndpoint:     '',       // base URL for custom/9router (without /chat/completions)
+  aiApiKey:       '',       // API key for custom/9router provider
+  aiModel:        ''        // model override for custom/9router provider
 };
 
 function getSettings()         { return { ...settings }; }

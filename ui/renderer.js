@@ -129,7 +129,43 @@ window.copilot.getSettings().then(s => {
   document.getElementById('setting-translation').checked  = s.showTranslation;
   document.getElementById('setting-answerstyle').value    = s.answerStyle || 'spoken';
   document.getElementById('setting-diarize').checked      = s.diarize || false;
+
+  const provider = s.aiProvider || 'env';
+  document.getElementById('setting-ai-provider').value = provider;
+  document.getElementById('setting-ai-endpoint').value = s.aiEndpoint || '';
+  document.getElementById('setting-ai-key').value      = s.aiApiKey   || '';
+  document.getElementById('setting-ai-model').value    = s.aiModel    || '';
+  _applyAiProviderUI(provider);
 });
+
+// Pre-fill 9router endpoint when switching to it for the first time
+const _9ROUTER_DEFAULT = 'http://localhost:20128/v1';
+
+function _applyAiProviderUI(provider) {
+  const envInfo     = document.getElementById('ai-env-info');
+  const customBlock = document.getElementById('ai-custom-fields');
+  const endpointEl  = document.getElementById('setting-ai-endpoint');
+
+  if (provider === 'env') {
+    envInfo.style.display     = 'flex';
+    customBlock.style.display = 'none';
+    // Populate .env hints lazily (only once)
+    if (!envInfo.dataset.loaded) {
+      envInfo.dataset.loaded = '1';
+      window.copilot.getEnvAiConfig().then(cfg => {
+        document.getElementById('ai-env-key-hint').textContent   = cfg.keyHint;
+        document.getElementById('ai-env-model-hint').textContent = cfg.model;
+      });
+    }
+  } else {
+    envInfo.style.display     = 'none';
+    customBlock.style.display = 'block';
+    if (provider === '9router' && !endpointEl.value) {
+      endpointEl.value = _9ROUTER_DEFAULT;
+      window.copilot.updateSettings({ aiEndpoint: _9ROUTER_DEFAULT });
+    }
+  }
+}
 
 // ── Screen source picker ──────────────────────────────────────────────────────
 
@@ -288,6 +324,23 @@ document.getElementById('setting-translation').addEventListener('change', e => {
   document.querySelectorAll('.translation').forEach(el => {
     el.style.display = e.target.checked ? '' : 'none';
   });
+});
+
+document.getElementById('setting-ai-provider').addEventListener('change', e => {
+  window.copilot.updateSettings({ aiProvider: e.target.value });
+  _applyAiProviderUI(e.target.value);
+});
+
+document.getElementById('setting-ai-endpoint').addEventListener('change', e => {
+  window.copilot.updateSettings({ aiEndpoint: e.target.value.trim() });
+});
+
+document.getElementById('setting-ai-key').addEventListener('change', e => {
+  window.copilot.updateSettings({ aiApiKey: e.target.value.trim() });
+});
+
+document.getElementById('setting-ai-model').addEventListener('change', e => {
+  window.copilot.updateSettings({ aiModel: e.target.value.trim() });
 });
 
 // ── Manual ask ────────────────────────────────────────────────────────────────
@@ -575,7 +628,7 @@ function markMySpeaker(label, el) {
 
 const txCardMap = new Map();
 
-window.copilot.onTranscriptChunk(({ id, text, utterances, wordCount }) => {
+window.copilot.onTranscriptChunk(({ id, text, utterances, wordCount, source }) => {
   // Update word count in left panel header
   leftWordCount.textContent = wordCount + 'w';
   analyzeBtn.textContent = `✨ Suggest (${wordCount}w)`;
@@ -589,10 +642,16 @@ window.copilot.onTranscriptChunk(({ id, text, utterances, wordCount }) => {
   if (Number.isFinite(Number(id))) {
     card.dataset.entryId = String(id);
   }
+  const sourceLabel = source === 'mic'          ? '🎙 MIC'
+                    : source === 'screen-audio' ? '🖥 AUDIO'
+                    : source === 'cc-screen'    ? '📺 CC'
+                    : source === 'cc-clipboard' ? '📋 CC'
+                    : 'CC';
+
   const utterHtml = buildUtterancesHtml(utterances);
   card.innerHTML = utterHtml || `
     <div class="tx-topbar">
-      <span class="suggestions-title">CC</span>
+      <span class="suggestions-title">${sourceLabel}</span>
       <div class="tx-sub-actions">
         <button class="tx-sub-btn" type="button" data-lang="vi">Sub VN</button>
         <button class="tx-sub-btn" type="button" data-lang="en">Sub EN</button>
@@ -605,7 +664,7 @@ window.copilot.onTranscriptChunk(({ id, text, utterances, wordCount }) => {
     const topbar = document.createElement('div');
     topbar.className = 'tx-topbar';
     topbar.innerHTML = `
-      <span class="suggestions-title">CC</span>
+      <span class="suggestions-title">${sourceLabel}</span>
       <div class="tx-sub-actions">
         <button class="tx-skip-btn" type="button" title="Bỏ thẻ này khỏi Suggest">⊘</button>
       </div>

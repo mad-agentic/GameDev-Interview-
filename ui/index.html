@@ -126,6 +126,45 @@
         <span class="toggle-slider"></span>
       </label>
     </div>
+
+    <div class="panel-section-divider"></div>
+    <div class="panel-section-title">AI Provider</div>
+
+    <div class="panel-row">
+      <label>Provider</label>
+      <select id="setting-ai-provider">
+        <option value="env">Anthropic (.env)</option>
+        <option value="9router">9router (localhost)</option>
+        <option value="custom">Custom endpoint</option>
+      </select>
+    </div>
+
+    <!-- shown for env -->
+    <div id="ai-env-info" class="panel-row ai-info-row" style="display:none">
+      <span class="ai-info-label">Key</span>
+      <span id="ai-env-key-hint" class="ai-info-value"></span>
+      <span class="ai-info-label" style="margin-left:10px">Model</span>
+      <span id="ai-env-model-hint" class="ai-info-value"></span>
+    </div>
+
+    <!-- shown for 9router / custom -->
+    <div id="ai-custom-fields" style="display:none">
+      <div class="panel-row">
+        <label>Endpoint</label>
+        <input type="text" id="setting-ai-endpoint" class="ai-text-input"
+               placeholder="http://localhost:20128/v1" />
+      </div>
+      <div class="panel-row">
+        <label>API Key</label>
+        <input type="password" id="setting-ai-key" class="ai-text-input"
+               placeholder="Optional" />
+      </div>
+      <div class="panel-row">
+        <label>Model</label>
+        <input type="text" id="setting-ai-model" class="ai-text-input"
+               placeholder="e.g. claude-haiku-4-5-20251014" />
+      </div>
+    </div>
   </div>
 
   <!-- Resume panel -->

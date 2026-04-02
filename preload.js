@@ -18,8 +18,9 @@ contextBridge.exposeInMainWorld('copilot', {
   saveSession:  ()      => ipcRenderer.invoke('save-session'),
 
   // Settings
-  getSettings:    ()      => ipcRenderer.invoke('get-settings'),
-  updateSettings: (patch) => ipcRenderer.invoke('update-settings', patch),
+  getSettings:      ()      => ipcRenderer.invoke('get-settings'),
+  updateSettings:   (patch) => ipcRenderer.invoke('update-settings', patch),
+  getEnvAiConfig:   ()      => ipcRenderer.invoke('get-env-ai-config'),
 
   // Window controls
   winMinimize: () => ipcRenderer.invoke('win-minimize'),

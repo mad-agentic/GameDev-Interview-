@@ -28,6 +28,7 @@ Overlay AI hỗ trợ phỏng vấn Game Developer theo thời gian thực — g
 ### Output
 
 - **Claude AI** (Haiku 4.5) — 3 gợi ý câu trả lời theo style: Spoken / Technical / STAR / All
+- **Multi-provider** — chọn Anthropic trực tiếp, 9router, hoặc custom OpenAI-compatible endpoint
 - **Song ngữ VI/EN** — tab 🇻🇳 để đọc hiểu, tab 🇬🇧 để speak (A2-B1, < 200 chars)
 - **Cá nhân hóa** — câu trả lời mang đúng tone, số liệu, công ty thật của bạn (`store/profile.json`)
 - **Keywords + Difficulty** — tag chủ đề và mức độ câu hỏi
@@ -39,6 +40,41 @@ Overlay AI hỗ trợ phỏng vấn Game Developer theo thời gian thực — g
 - **Stealth mode** — `Ctrl+Shift+Space` ẩn/hiện toàn bộ app
 - **Minimize / Maximize / Hide** — đầy đủ window controls
 - **Manual Ask** — gõ câu hỏi bất kỳ để luyện mock interview offline
+
+---
+
+## AI Provider
+
+Settings panel ⚙ có mục **AI Provider** — chọn nguồn gọi AI cho phần gợi ý câu trả lời:
+
+| Provider | Mô tả |
+|---|---|
+| **Anthropic (.env)** | Mặc định. Gọi thẳng Anthropic API, dùng `ANTHROPIC_KEY` + `CLAUDE_MODEL` từ `.env` |
+| **9router (localhost)** | Route qua [9router](https://github.com/decolua/9router) — tự động fallback qua 40+ provider/model miễn phí. Endpoint tự điền `http://localhost:20128/v1` |
+| **Custom endpoint** | Bất kỳ endpoint OpenAI-compatible nào (LM Studio, Ollama, OpenRouter, Azure...) |
+
+### Dùng 9router
+
+1. Cài và chạy 9router daemon:
+   ```bash
+   npm install -g 9router
+   9router
+   ```
+2. Mở dashboard tại `http://localhost:20128` → kết nối provider → tạo API key + combo model
+3. Trong Settings ⚙ của app → chọn **9router (localhost)**
+4. Nhập API key từ 9router dashboard và model name (tên combo bạn tạo)
+
+> **Lợi ích:** 9router tự động switch sang model miễn phí khi quota hết — không bị gián đoạn giữa buổi phỏng vấn.
+
+### Dùng Custom Endpoint
+
+1. Trong Settings ⚙ → chọn **Custom endpoint**
+2. Điền 3 trường:
+   - **Endpoint** — base URL, ví dụ `http://localhost:1234/v1` (LM Studio) hoặc `https://openrouter.ai/api/v1`
+   - **API Key** — để trống nếu server local không cần xác thực
+   - **Model** — tên model, ví dụ `mistral-7b-instruct`, `llama-3.1-8b`
+
+> Custom endpoint phải hỗ trợ định dạng **OpenAI-compatible** (`POST /chat/completions`).
 
 ---
 
@@ -179,7 +215,7 @@ gamedev-copilot/
 │
 ├── ai/
 │   ├── whisper.js           # OpenAI Whisper STT (+ game dev vocabulary hint)
-│   ├── claude.js            # Anthropic Claude — JSON suggestion response
+│   ├── claude.js            # AI suggestion — Anthropic native + OpenAI-compat (9router/custom)
 │   ├── prompt.js            # System prompt builder — inject profile + personality
 │   ├── assemblyai.js        # Speaker diarization — detect + filter by speaker
 │   └── vision.js            # OpenAI gpt-4o-mini Vision — OCR CC text từ screenshot
@@ -248,6 +284,19 @@ npx @electron/rebuild -f -w naudiodon
 
 **Claude trả về lỗi model**
 - Kiểm tra `CLAUDE_MODEL` trong `.env` — phải là `claude-haiku-4-5-20251001`
+
+**9router không kết nối được**
+- Đảm bảo `9router` daemon đang chạy (`9router` trong terminal)
+- Kiểm tra port 20128 chưa bị chặn bởi firewall
+- Mở `http://localhost:20128` trên browser — nếu thấy dashboard là OK
+
+**Custom endpoint trả lỗi 401/403**
+- Kiểm tra API Key đúng và chưa hết hạn
+- Một số server local (LM Studio, Ollama) không cần key — để trống ô API Key
+
+**Custom endpoint trả về lỗi parse JSON**
+- Provider không trả đúng format JSON theo prompt — thử chuyển về Anthropic hoặc 9router
+- Kiểm tra model có đủ mạnh để follow instruction JSON (khuyến nghị ≥ 7B params)
 
 **Whisper nhận sai từ** (ví dụ "difficult button" thay vì "debug")
 - Đây là lỗi audio chất lượng thấp — tăng sample rate VB-Cable lên `48000 Hz`

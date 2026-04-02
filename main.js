@@ -136,8 +136,13 @@ function isLikelyPromoOrOutro(text = '') {
   if (!normalized) return false;
 
   const promoPatterns = [
-    /\bthank(s| you)? for watching\b/,
-    /\bsee you in the next video\b/,
+    // ── English outro ─────────────────────────────────────────────────────────
+    /\bthank(s| you)?( so much)? for watching\b/,
+    /\bsee you (in the next|next time|soon|later)\b/,
+    /\buntil next time\b/,
+    /\bbye( bye| for now)?\b/,
+    /\btake care( everyone| guys| friends)?\b/,
+    /\bstay tuned\b/,
     /\bsubscribe\b/,
     /\bsubcribe\b/,
     /\blike and share\b/,
@@ -145,25 +150,65 @@ function isLikelyPromoOrOutro(text = '') {
     /\bfollow (us|me|for more)\b/,
     /\bturn on notifications\b/,
     /\bhit( the)? bell\b/,
+    /\bdon.?t forget to (like|subscribe|share|comment)\b/,
+    /\bif you (enjoyed|liked) (this|today.s) (video|content)\b/,
+    /\bleave a (like|comment|thumbs)\b/,
+    /\bdrop a (like|comment)\b/,
+    // ── Vietnamese outro ──────────────────────────────────────────────────────
     /\bdang ky kenh\b/,
     /\bhay dang ky\b/,
     /\bdung quen dang ky\b/,
     /\ban chuong\b/,
     /\bbam chuong\b/,
     /\bnhan like\b/,
-    /\blike va share\b/
+    /\blike va share\b/,
+    /\bhen gap lai\b/,           // hẹn gặp lại
+    /\bhen gap cac ban\b/,       // hẹn gặp các bạn
+    /\bgap lai trong\b/,         // gặp lại trong video...
+    /\bvideo tiep theo\b/,       // video tiếp theo
+    /\bkhong bo lo\b/,           // không bỏ lỡ
+    /\bcam on cac ban\b/,        // cảm ơn các bạn
+    /\bcam on da xem\b/,         // cảm ơn đã xem
+    /\bcac ban nho\b/,           // các bạn nhớ (nhớ like, nhớ subscribe)
+    /\bnho nhan nut\b/,          // nhớ nhấn nút
+    /\bnhan nut thich\b/,        // nhấn nút thích
+    /\bchia se video\b/,         // chia sẻ video
+    /\bbình luận bên dưới\b/,
+    /\bbinh luan ben duoi\b/,
+    /\bkenh cua minh\b/,         // kênh của mình
+    /\bkenh nay\b/,              // kênh này
+    /\bnoi dung moi\b/,          // nội dung mới
+    /\bvideo moi\b/,             // video mới
   ];
 
   if (promoPatterns.some((re) => re.test(normalized))) return true;
 
-  const hasChannelWord = /\b(channel|kenh)\b/.test(normalized);
-  const hasPromoVerb = /\b(subscribe|dang ky|follow|like|share)\b/.test(normalized);
-  return hasChannelWord && hasPromoVerb;
+  // Composite: channel/video word + promo action
+  const hasChannelWord = /\b(channel|kenh|video)\b/.test(normalized);
+  const hasPromoVerb   = /\b(subscribe|dang ky|follow|like|share|thich|theo doi)\b/.test(normalized);
+  if (hasChannelWord && hasPromoVerb) return true;
+
+  // Short generic sign-off phrases (≤ 6 words) with no interview signal
+  const words = normalized.trim().split(/\s+/);
+  if (words.length <= 6) {
+    const signOffPhrases = [
+      /^(thank you|thanks)[.!]?$/,
+      /^see you( soon| guys| all)?[.!]?$/,
+      /^bye( bye| everyone| guys| all)?[.!]?$/,
+      /^take care[.!]?$/,
+      /^(cam on|xin cam on)[.!]?$/,  // cảm ơn
+      /^(hen gap lai)[.!]?$/,
+    ];
+    if (signOffPhrases.some((re) => re.test(normalized.trim()))) return true;
+  }
+
+  return false;
 }
 
 // ── Transcript buffer (accumulates until user clicks Suggest) ─────────────────
-let transcriptBuffer = []; // [{id, text, utterances, excluded}]
+let transcriptBuffer = []; // [{id, text, utterances, excluded, source}]
 let transcriptEntrySeq = 1;
+let currentCaptureSource = 'mic'; // 'mic' | 'screen-audio' | 'cc-screen' | 'cc-clipboard'
 
 function getTranscriptWordCount(includeExcluded = true) {
   return transcriptBuffer
@@ -185,6 +230,7 @@ function emitTranscriptMeta() {
 
 function pushTranscript(text, utterances = null) {
   if (!text || !text.trim()) return;
+  if (isLikelyPromoOrOutro(text)) return;
   const { minWords } = getSettings();
   const words = text.trim().split(/\s+/);
   if (words.length < minWords) return;
@@ -192,7 +238,8 @@ function pushTranscript(text, utterances = null) {
     id: transcriptEntrySeq++,
     text: text.trim(),
     utterances,
-    excluded: false
+    excluded: false,
+    source: currentCaptureSource
   };
   transcriptBuffer.push(entry);
   const wordCount = getTranscriptWordCount(false);
@@ -201,7 +248,8 @@ function pushTranscript(text, utterances = null) {
     text: entry.text,
     utterances,
     excluded: false,
-    wordCount
+    wordCount,
+    source: entry.source
   });
   emitTranscriptMeta();
 }
@@ -344,6 +392,7 @@ ipcMain.handle('set-resume', (_, text) => setResume(text));
 // Start audio capture → Whisper → Claude pipeline
 ipcMain.handle('start-capture', async (_, deviceId) => {
   if (captureStream) return;
+  currentCaptureSource = 'mic';
 
   const { chunkCount } = getSettings();
   win.webContents.send('status', 'Listening...');
@@ -416,6 +465,15 @@ ipcMain.handle('save-session', () => {
 ipcMain.handle('get-settings',    ()        => getSettings());
 ipcMain.handle('update-settings', (_, patch) => updateSettings(patch));
 
+// Return current .env AI config (key masked, read-only display)
+ipcMain.handle('get-env-ai-config', () => ({
+  model:   process.env.CLAUDE_MODEL || 'claude-haiku-4-5-20251014',
+  hasKey:  !!process.env.ANTHROPIC_KEY,
+  keyHint: process.env.ANTHROPIC_KEY
+    ? '...' + process.env.ANTHROPIC_KEY.slice(-4)
+    : '(not set)'
+}));
+
 ipcMain.handle('get-screen-sources', async () => {
   const sources = await desktopCapturer.getSources({
     types: ['window', 'screen'],
@@ -429,6 +487,7 @@ ipcMain.handle('get-screen-sources', async () => {
 });
 
 ipcMain.handle('submit-audio-chunk', async (_, arrayBuffer) => {
+  currentCaptureSource = 'screen-audio';
   const buf = Buffer.from(arrayBuffer);
   if (getSettings().diarize) {
     await runDiarizePipeline(buf);
@@ -561,6 +620,7 @@ ipcMain.handle('translate-text', async (_, text) => {
 // ── Screen CC mode (screenshot + Vision OCR) ─────────────────────────────────
 ipcMain.handle('start-screen-cc', async (_, sourceId) => {
   if (screenCCWatcher) { clearInterval(screenCCWatcher); screenCCWatcher = null; }
+  currentCaptureSource = 'cc-screen';
 
   let isOcrRunning = false;
   const { width: sw, height: sh } = electronScreen.getPrimaryDisplay().size;
@@ -628,6 +688,7 @@ ipcMain.handle('stop-screen-cc', () => {
 // ── Clipboard CC mode ─────────────────────────────────────────────────────────
 ipcMain.handle('start-clipboard-watch', () => {
   if (clipboardWatcher) return;
+  currentCaptureSource = 'cc-clipboard';
   lastClipText = normalizeCcText(clipboard.readText());
   clipboardWatcher = setInterval(() => {
     if (isPaused) return;
