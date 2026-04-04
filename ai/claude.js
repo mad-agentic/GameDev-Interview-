@@ -60,6 +60,7 @@ async function _callOpenAICompat(endpoint, model, apiKey, text, systemPrompt) {
     {
       model,
       max_tokens: 1200,
+      response_format: { type: 'json_object' },
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user',   content: text }
@@ -84,14 +85,89 @@ function _parseJsonResponse(rawText) {
   if (!body) throw new Error('Empty response body');
 
   const stripped = body.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
-  const match = stripped.match(/\{[\s\S]*\}/);
-  if (!match) throw new Error('No JSON in response: ' + body.slice(0, 120));
+  const jsonBlock = _extractBalancedJsonObject(stripped);
+  if (!jsonBlock) throw new Error('No JSON in response: ' + body.slice(0, 120));
 
-  try {
-    return JSON.parse(match[0]);
-  } catch (e) {
-    throw new Error('JSON parse error: ' + e.message + ' | raw: ' + match[0].slice(0, 80));
+  const candidates = [
+    jsonBlock,
+    _cleanupLikelyJson(jsonBlock),
+    _cleanupLikelyJson(jsonBlock, { removeTrailingCommas: true, normalizeQuotes: true })
+  ];
+
+  let lastError = null;
+  for (const candidate of candidates) {
+    try {
+      return JSON.parse(candidate);
+    } catch (e) {
+      lastError = e;
+    }
   }
+
+  throw new Error('JSON parse error: ' + (lastError?.message || 'Unknown parse failure') + ' | raw: ' + jsonBlock.slice(0, 120));
+}
+
+function _extractBalancedJsonObject(text) {
+  const start = text.indexOf('{');
+  if (start < 0) return '';
+
+  let inString = false;
+  let isEscaped = false;
+  let depth = 0;
+
+  for (let i = start; i < text.length; i++) {
+    const ch = text[i];
+
+    if (inString) {
+      if (isEscaped) {
+        isEscaped = false;
+      } else if (ch === '\\') {
+        isEscaped = true;
+      } else if (ch === '"') {
+        inString = false;
+      }
+      continue;
+    }
+
+    if (ch === '"') {
+      inString = true;
+      continue;
+    }
+
+    if (ch === '{') {
+      depth++;
+      continue;
+    }
+
+    if (ch === '}') {
+      depth--;
+      if (depth === 0) {
+        return text.slice(start, i + 1);
+      }
+    }
+  }
+
+  return '';
+}
+
+function _cleanupLikelyJson(text, options = {}) {
+  const removeTrailingCommas = options.removeTrailingCommas !== false;
+  const normalizeQuotes = options.normalizeQuotes !== false;
+
+  let cleaned = String(text || '')
+    .replace(/^[\uFEFF\s]+/, '')
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '');
+
+  if (normalizeQuotes) {
+    cleaned = cleaned
+      .replace(/[\u201C\u201D]/g, '"')
+      .replace(/[\u2018\u2019]/g, "'");
+  }
+
+  if (removeTrailingCommas) {
+    cleaned = cleaned.replace(/,\s*([}\]])/g, '$1');
+  }
+
+  return cleaned;
 }
 
 module.exports = { analyze };
